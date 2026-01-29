@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import TransitionProvider from "@/providers/TransitionProvider";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,8 +31,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <TransitionProvider>
-          <Header />
-          <main className="appMain">{children}</main>
+          <div className="layoutWrapper">
+            <Header />
+            <main className="appMain">{children}</main>
+            <Footer />
+          </div>
         </TransitionProvider>
       </body>
     </html>
