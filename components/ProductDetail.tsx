@@ -4,7 +4,7 @@ import { useRef, useEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import type { GalleryItem } from "@/data/galleryItems";
-
+import Image from "next/image";
 type ProductDetailProps = {
   product: GalleryItem;
 };
@@ -83,7 +83,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
       <div ref={pageRef} className="product-details-section">
         <div className="product-details-container">
           <Link href="/gallery" className="back-link">
-            ← გალერეაში დაბრუნება
+            <Image src="/back.png" alt="arrow-left" width={20} height={20} /> გალერეაში დაბრუნება
           </Link>
 
           <div className="product-details-grid">

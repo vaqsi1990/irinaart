@@ -11,10 +11,10 @@ export default function Nav() {
 
   return (
     <nav className="siteNav" aria-label="Primary">
-      <div className="siteNav__inner">
+      <div className="siteNav__inner max-w-8xl">
         <div className="siteNav__brand">
           <TransitionLink className="siteNav__logo" href="/">
-            <Image src="/logo.jpg" className="rounded-full" alt="logo" width={50} height={50} />
+            <Image src="/logo.jpg" className="rounded-full" alt="logo" width={90} height={90} />
           </TransitionLink>
         </div>
 

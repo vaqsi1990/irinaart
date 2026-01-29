@@ -35,7 +35,7 @@ const Hero = () => {
                     <div className="absolute left-1/2 top-3/4 -translate-x-1/2 -translate-y-1/2 z-10">
                         <Link
                             href="/gallery"
-                            className="block md:text-[20px] text-[18px] text-4.5 bg-[#35aec2] rounded-md font-bold  text-center
+                            className="block md:text-[20px] text-[18px] text-4.5 bg-[#35aec2] rounded-xl font-bold  text-center
              px-6 py-3  no-underline normal-case"
                             style={{ padding: '0.75rem 1.5rem' }}
                         >
