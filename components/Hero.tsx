@@ -1,52 +1,175 @@
 "use client";
 
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import gsap from "gsap";
 import { galleryItems } from "@/data/galleryItems";
 
-const slides = [
-  ...galleryItems.slice(0, 6).map(({ id, image, alt }) => ({ id, image, alt })),
-  { id: 6, image: galleryItems[0].image, alt: "Accordian7" },
-];
-
 const Hero = () => {
-    const animation = (e: React.MouseEvent<HTMLElement>) => {
-        const target = e.target as HTMLElement;
-        const item = target.closest('.item') as HTMLElement | null;
-        if (!item) return;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [entering, setEntering] = useState(true); // start true so initial load animates
+  const primaryFrameRef = useRef<HTMLDivElement>(null);
+  const secondaryFrameRef = useRef<HTMLDivElement>(null);
 
-        const items = document.querySelectorAll('.item');
-        items.forEach((el) => el.classList.remove('animation'));
-        item.classList.add('animation');
-    };
+  const total = galleryItems.length;
+  const leftItem = galleryItems[currentIndex % total];
+  const rightItem = galleryItems[(currentIndex + 1) % total];
 
+  const goNext = useCallback(() => {
+    setEntering(true);
+    setCurrentIndex((i) => (i + 1) % total);
+  }, [total]);
 
-    return (
-        <div className="min-h-screen relative overflow-hidden">
+  const goPrev = useCallback(() => {
+    setEntering(true);
+    setCurrentIndex((i) => (i - 1 + total) % total);
+  }, [total]);
 
-            <div className="grid place-items-center overflow-hidden px-0 relative">
-                <div className="flex w-full h-full max-w-[100vw] gap-[0.15rem] p-[0.15rem] min-w-0 relative">
-                    {slides.map((slide) => (
-                        <div onClick={animation} key={slide.id} className="item flex-1 min-w-0 h-[100vh] cursor-pointer overflow-hidden transition delay-700">
-                            <Image src={slide.image} alt={slide.alt} width={500} height={500} className="w-[100%] h-[100%] object-cover " />
-                        </div>
-                    ))}
-                    <div className="absolute inset-0 bg-black/50 pointer-events-none" aria-hidden />
-                    <div className="absolute left-1/2 top-3/4 -translate-x-1/2 -translate-y-1/2 z-10">
-                        <Link
-                            href="/gallery"
-                            className="block md:text-[20px] text-[18px] text-4.5 bg-[#35aec2] rounded-xl font-bold  text-center
-             px-6 py-3  no-underline normal-case"
-                            style={{ padding: '0.75rem 1.5rem' }}
-                        >
-                            დაათვალიერე გალერეა
-                        </Link>
-                    </div>
+  // GSAP: smooth entrance animations with stagger
+  useEffect(() => {
+    if (!entering) return;
+    const primary = primaryFrameRef.current;
+    const secondary = secondaryFrameRef.current;
 
-                </div>
-            </div>
+    const tl = gsap.timeline({ defaults: { overwrite: true } });
+
+    // Primary frame: from up to down, soft scale
+    if (primary) {
+      tl.fromTo(
+        primary,
+        { yPercent: -100, opacity: 0, scale: 0.96 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.9,
+          ease: "power3.out",
+        },
+        0
+      );
+    }
+
+    // Secondary frame: from down to up, soft scale, slight delay for stagger
+    if (secondary) {
+      tl.fromTo(
+        secondary,
+        { yPercent: 100, opacity: 0, scale: 0.96 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          delay: 0.2,
+        },
+        0
+      );
+    }
+  }, [entering, currentIndex]);
+
+  // Run entrance animation on mount and when slide changes
+  useEffect(() => {
+    if (!entering) return;
+    const t = setTimeout(() => setEntering(false), 1200);
+    return () => clearTimeout(t);
+  }, [entering, currentIndex]);
+
+  return (
+    <div className="hero-home">
+      <div className="hero-home__bg">
+        <div className="hero-home__bg-solid" />
+        <div
+          className="hero-home__bg-image"
+          style={{ backgroundImage: "url(/bg_1.jpg)" }}
+          aria-hidden
+        />
+        <div className="hero-home__bg-texture" aria-hidden />
+      </div>
+
+      <div className="hero-home__inner">
+        <div className="hero-home__paintings">
+          <div
+            ref={primaryFrameRef}
+            className="hero-home__frame hero-home__frame--primary"
+          >
+            <Image
+              src={leftItem.image}
+              alt={leftItem.alt}
+              width={380}
+              height={480}
+              className="hero-home__frame-img"
+            />
+          </div>
+          <div
+            ref={secondaryFrameRef}
+            className="hero-home__frame hero-home__frame--secondary"
+          >
+            <Image
+              src={rightItem.image}
+              alt={rightItem.alt}
+              width={280}
+              height={360}
+              className="hero-home__frame-img"
+            />
+          </div>
         </div>
-    );
+
+        <div className="hero-home__content">
+          <h1 className="hero-home__heading">
+           დაათვალიერეთ
+            <br />
+         
+           ნამუშევრები
+          </h1>
+          
+          <Link href="/gallery" className="siteNav__link">
+        გადადით  გალერეაში
+          </Link>
+          <div className="hero-home__arrows">
+            <button
+              type="button"
+              className="hero-home__arrow"
+              aria-label="Previous slide"
+              onClick={goPrev}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              className="hero-home__arrow"
+              aria-label="Next slide"
+              onClick={goNext}
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Hero;
