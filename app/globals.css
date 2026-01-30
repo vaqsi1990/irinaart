@@ -404,6 +404,12 @@ section {
  height: 700px;
   width: 100%;
 }
+@media (max-width: 768px) {
+ .hero-home__frame hero-home__frame--primary{
+  left: 0;
+ }
+}
+
 
 @keyframes hero-frame-from-top {
   from {
@@ -454,7 +460,7 @@ section {
 .hero-home__frame--secondary {
   right: 1.5rem;
   bottom: 1.5rem;
-  width: clamp(200px, 22vw, 280px);
+  width: clamp(260px, 28vw, 380px);
   padding: 5px;
   border: 4px solid #c4b8a8;
   background: #e8e2d8;
@@ -601,7 +607,14 @@ section {
   pointer-events: none;
   z-index: 2;
 }
-
+@media (max-width: 768px) {
+  .hero-home__frame .hero-home__frame--primary {
+   left: 0%  !important;
+  }
+  .hero-home__frame .hero-home__frame--secondary {
+    right: 0%  !important;
+   }
+}
 /* Accordion: expand clicked panel */
 .item {
   transition: flex 0.5s ease-in-out;
