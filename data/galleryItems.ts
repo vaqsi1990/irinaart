@@ -72,20 +72,5 @@ export const galleryItems: GalleryItem[] = [
     collection: "პორტრეტი",
     price: "₾165",
   },
-  {
-    id: 8,
-    image: "/615407087_1485663660232954_298019338823418797_n.jpg",
-    alt: "Accordian9",
-    name: "მარმარილოს კომპოზიცია",
-    collection: "პორტრეტი",
-    price: "₾280",
-  },
-  {
-    id: 9,
-    image: "/527474726_1338734624925859_4273139227242996065_n.jpg",
-    alt: "Accordian10",
-    name: "აბსტრაქტი",
-    collection: "პორტრეტი",
-    price: "₾210",
-  },
+ 
 ];

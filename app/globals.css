@@ -27,7 +27,7 @@
 
 body {
   background-color: #fff;
-  color: var(--base-100);
+  color: var(--foreground);
 }
 
 .layoutWrapper {
@@ -792,7 +792,7 @@ section {
   min-width: 0;
 }
 
-/* გარე მუქი ჩარჩო */
+/* áƒ’áƒáƒ áƒ” áƒ›áƒ£áƒ¥áƒ˜ áƒ©áƒáƒ áƒ©áƒ */
 .category-frame-outer {
 
   
@@ -803,7 +803,7 @@ section {
   min-height: 0;
 }
 
-/* თეთრი პასპარტუ */
+/* áƒ—áƒ”áƒ—áƒ áƒ˜ áƒžáƒáƒ¡áƒžáƒáƒ áƒ¢áƒ£ */
 .category-frame-inner {
  
   
@@ -815,7 +815,7 @@ section {
 
 
 
-/* თვითონ სურათი */
+/* áƒ—áƒ•áƒ˜áƒ—áƒáƒœ áƒ¡áƒ£áƒ áƒáƒ—áƒ˜ */
 .category-frame-inner img {
   display: block;
   width: 100%;
@@ -831,7 +831,7 @@ section {
   transform: scale(1.05);
 }
 
-/* hover ეფექტი */
+/* hover áƒ”áƒ¤áƒ”áƒ¥áƒ¢áƒ˜ */
 .category-item:hover .category-frame-outer {
   transform: scale(1.02);
 }
@@ -840,7 +840,7 @@ section {
   will-change: transform;
 }
 
-/* ტექსტი ქვემოთ */
+/* áƒ¢áƒ”áƒ¥áƒ¡áƒ¢áƒ˜ áƒ¥áƒ•áƒ”áƒ›áƒáƒ— */
 .category-art-info {
   text-align: center;
 }
@@ -852,6 +852,7 @@ section {
   line-height: 1.3;
   color: #1a1a1a;
 }
+
 
 .detail-bg::after {
   position: absolute;
@@ -1015,4 +1016,386 @@ section {
   .product-detail-button {
     max-width: 100%;
   }
+}
+
+/* --- Photo Gallery (Inside Kristallnacht–inspired) --- */
+.photo-gallery {
+  padding: 2rem 1.5rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.photo-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  grid-auto-rows: minmax(200px, auto);
+}
+
+@media (max-width: 900px) {
+  .photo-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .photo-gallery__grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+.photo-gallery__item {
+  min-height: 220px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.photo-gallery__item[data-size="wide"] {
+  grid-column: span 2;
+}
+
+.photo-gallery__item[data-size="tall"] {
+  grid-row: span 2;
+}
+
+@media (max-width: 900px) {
+  .photo-gallery__item[data-size="wide"] {
+    grid-column: span 2;
+  }
+
+  .photo-gallery__item[data-size="tall"] {
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 500px) {
+  .photo-gallery__item[data-size="wide"] {
+    grid-column: span 1;
+  }
+}
+
+.photo-gallery__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.photo-gallery__image-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  overflow: hidden;
+  background: var(--base-300, #0f0f0f);
+}
+
+.photo-gallery__image {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.photo-gallery__link:hover .photo-gallery__image,
+.photo-gallery__link:focus-visible .photo-gallery__image {
+  transform: scale(1.08);
+}
+
+.photo-gallery__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.photo-gallery__link:hover .photo-gallery__overlay,
+.photo-gallery__link:focus-visible .photo-gallery__overlay {
+  opacity: 1;
+}
+
+.photo-gallery__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.photo-gallery__link:hover .photo-gallery__caption,
+.photo-gallery__link:focus-visible .photo-gallery__caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.photo-gallery__title {
+  font-family: "SCHABO", sans-serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.photo-gallery__price {
+  font-family: "DM Mono", monospace;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+/* --- Story Gallery (layered photo + yellow card + nav) --- */
+.story-gallery {
+  color: #1a1a1a;
+  padding: 3rem 1.5rem 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ჩარჩო — მთელი სექცია (ფონიც) არა full width, მაქს. სიგანე ცენტრში */
+.story-gallery__frame {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #2a2a2a;
+  padding: 3rem 2rem 5rem;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-radius: 8px;
+}
+
+.story-gallery__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 3rem;
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .story-gallery__layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Left: photo stack */
+.story-gallery__photos {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 380px;
+}
+
+.story-gallery__stack {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 5;
+}
+
+/* Back layers: white “under” photos, slightly rotated */
+.story-gallery__layer {
+  position: absolute;
+  inset: 0;
+  background: #f5f3ef;
+  border-radius: 2px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.story-gallery__layer--back-3 {
+  transform: translate(12px, 16px) rotate(-2deg);
+  z-index: 0;
+  opacity: 0.9;
+}
+
+.story-gallery__layer--back-2 {
+  transform: translate(6px, 8px) rotate(-1deg);
+  z-index: 1;
+  opacity: 0.95;
+}
+
+.story-gallery__layer--back-1 {
+  transform: translate(2px, 4px) rotate(-0.5deg);
+  z-index: 2;
+}
+
+/* Main photo with torn edge */
+.story-gallery__photo-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  filter: drop-shadow(0 0 0 8px #fff) drop-shadow(2px 4px 12px rgba(0, 0, 0, 0.3));
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.story-gallery__photo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #1a1a1a;
+  /* Jagged “torn” clip-path on right and bottom */
+  clip-path: polygon(
+    0 0, 100% 0,
+    100% 6%, 98% 12%, 100% 18%, 97% 24%, 100% 30%, 98% 36%, 100% 42%, 97% 48%, 100% 54%, 98% 60%, 100% 66%, 97% 72%, 100% 78%, 98% 84%, 100% 90%, 100% 100%,
+    94% 100%, 88% 98%, 82% 100%, 76% 97%, 70% 100%, 64% 98%, 58% 100%, 52% 97%, 46% 100%, 40% 98%, 34% 100%, 28% 97%, 22% 100%, 16% 98%, 10% 100%, 4% 98%, 0 100%,
+    0 0
+  );
+}
+
+.story-gallery__photo--torn .story-gallery__image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Yellow info card */
+.story-gallery__card-wrap {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column !important;
+}
+
+.story-gallery__card {
+  background: #f4d03f;
+  color: #1a1a1a;
+  padding: 2rem 2.25rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  max-width: 420px;
+  width: 100%;
+}
+
+.story-gallery__card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0 0 1.25rem;
+  line-height: 1.2;
+  color: #1a1a1a;
+}
+
+.story-gallery__card-title-prefix {
+  margin-right: 0.2em;
+}
+
+.story-gallery__card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.story-gallery__card-date:not(:last-child)::after {
+  content: " · ";
+  margin-left: 0.25rem;
+  color: #666;
+}
+
+.story-gallery__card-location {
+  color: #333;
+}
+
+.story-gallery__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.story-gallery__card-p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+/* Bottom navigation — Hero-სავით (ჩარჩოს შიგნით) */
+.story-gallery__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.story-gallery__nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #35aec2;
+  background: #35aec2;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.story-gallery__nav-btn:hover,
+.story-gallery__nav-btn:focus-visible {
+  background: #35aec2;
+  color: #d2a000;
+}
+
+.story-gallery__nav-center {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 80px;
+  justify-content: center;
+}
+
+.story-gallery__nav-counter {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.story-gallery__nav-brand {
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  border: none;
+  background: #3a3a3a;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.story-gallery__nav-brand:hover {
+  background: #4a4a4a;
 }
