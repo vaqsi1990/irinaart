@@ -5,7 +5,7 @@ export default function AdminPaintingsPage() {
     <div className="admin-page">
       <div className="admin-page-header">
         <h1 className="admin-page__title">ნახატები</h1>
-        <Link href="/admin/paintings/new" className="admin-btn-primary">
+        <Link href="/admin/paintings/new" className="siteNav__link">
           ნახატის დამატება
         </Link>
       </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import TransitionProvider from "@/providers/TransitionProvider";
+import ConditionalTransitionProvider from "@/providers/ConditionalTransitionProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -30,13 +30,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TransitionProvider>
+        <ConditionalTransitionProvider>
           <div className="layoutWrapper">
             <Header />
             <main className="appMain">{children}</main>
             <Footer />
           </div>
-        </TransitionProvider>
+        </ConditionalTransitionProvider>
       </body>
     </html>
   );

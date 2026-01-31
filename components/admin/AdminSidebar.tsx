@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useCallback } from "react";
 
 const NAV_ITEMS = [
@@ -13,9 +13,22 @@ const NAV_ITEMS = [
 
 export default function AdminSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
 
   const close = useCallback(() => setOpen(false), []);
+
+  async function handleLogout() {
+    setLoggingOut(true);
+    try {
+      await fetch("/api/admin-logout", { method: "POST" });
+      router.push("/admin/login");
+      router.refresh();
+    } finally {
+      setLoggingOut(false);
+    }
+  }
 
   return (
     <>
@@ -83,6 +96,14 @@ export default function AdminSidebar() {
             <Link href="/" className="admin-back-link">
               ← უკან საიტზე
             </Link>
+            <button
+              type="button"
+              onClick={handleLogout}
+              disabled={loggingOut}
+              className="admin-logout-btn"
+            >
+              {loggingOut ? "..." : "გასვლა"}
+            </button>
           </div>
         </div>
       </aside>
