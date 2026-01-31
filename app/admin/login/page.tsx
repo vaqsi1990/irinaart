@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
-export default function AdminLoginPage() {
+function AdminLoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const from = searchParams.get("from") || "/admin";
@@ -58,5 +58,29 @@ export default function AdminLoginPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+function LoginFallback() {
+  return (
+    <div className="admin-login">
+      <div className="admin-login__card">
+        <h1 className="admin-login__title">პანელი</h1>
+        <p className="admin-login__hint">შეიყვანეთ პაროლი</p>
+        <div className="admin-login__form">
+          <div className="admin-login__input" style={{ color: "#94a3b8" }}>
+            იტვირთება...
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function AdminLoginPage() {
+  return (
+    <Suspense fallback={<LoginFallback />}>
+      <AdminLoginForm />
+    </Suspense>
   );
 }
