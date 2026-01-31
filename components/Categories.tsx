@@ -67,7 +67,7 @@ const Categories = () => {
         aria-hidden
       />
       <div className="categories-container">
-        <h2 className="categories-title text-black md:text-[30px] text-[20px]">Browse by Collection</h2>
+
         {/* Category Buttons */}
         <div className="category-buttons">
           {categoryButtons.map((button) => {
