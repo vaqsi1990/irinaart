@@ -1715,9 +1715,14 @@ section {
 }
 
 .admin-page {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    display: flex;
+    margin: 0 auto;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .admin-page__title {
@@ -1937,4 +1942,143 @@ section {
 .admin-login__btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+/* Admin form (new painting / exhibition) */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.admin-form__card {
+  width: 100%;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.admin-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.admin-form__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+.admin-form__input,
+.admin-form__select,
+.admin-form__textarea {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  padding: 0.625rem 0.75rem;
+  font-size: 1rem;
+  background: #fff;
+  color: #0f172a;
+}
+
+.admin-form__input:focus,
+.admin-form__select:focus,
+.admin-form__textarea:focus {
+  outline: none;
+  border-color: #1e293b;
+  box-shadow: 0 0 0 2px rgba(30, 41, 59, 0.2);
+}
+
+.admin-form__input::placeholder,
+.admin-form__textarea::placeholder {
+  color: #94a3b8;
+}
+
+.admin-form__textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.admin-form__error {
+  font-size: 0.875rem;
+  color: #dc2626;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: #fef2f2;
+}
+
+.admin-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* UploadThing image upload – clean, readable layout */
+.upload-thing-image-upload {
+  width: 100%;
+}
+
+.upload-thing-image-upload > div {
+  display: flex;
+  flex-direction: column !important;
+  align-items: stretch;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Button: full width, hide native file text, show only custom label */
+.upload-thing-image-upload label[data-ut-element="button"] {
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  width: 100% !important;
+  max-width: 100%;
+  padding: 0.75rem 1.25rem;
+  overflow: visible !important;
+  border-radius: 0.5rem;
+  background: #2563eb;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.upload-thing-image-upload label[data-ut-element="button"]:hover {
+  background: #1d4ed8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hide native file input – only our custom text shows */
+.upload-thing-image-upload label[data-ut-element="button"] input[type="file"] {
+  position: absolute;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Allowed content text below button */
+.upload-thing-image-upload [data-ut-element="allowed-content"],
+.upload-thing-image-upload .ut-allowed-content {
+  display: block !important;
+  width: 100%;
+  margin-top: 0;
+  padding: 0;
+  min-height: unset;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #64748b;
+  text-align: left;
 }
