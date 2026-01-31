@@ -667,7 +667,7 @@ section {
 .siteFooter__link {
   color: #1a1a1a;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 20px;
   font-weight: 500;
   transition: color 0.2s ease;
 }
@@ -1042,8 +1042,8 @@ section {
 .product-detail-button {
   display: inline-block;
   padding: 1rem 2rem;
-  background: #2c6870;
-  color: #fff !important;
+  background: #d2a000 !important;
+  color: black !important;
   text-decoration: none;
   font-size: 20px;
   font-weight: 600;
@@ -1055,10 +1055,7 @@ section {
   border-radius: 10px;
 }
 
-.product-detail-button:hover {
-  opacity: 0.95;
-  background: #a67c2e;
-}
+
 
 @media (max-width: 768px) {
   .product-details-section {
@@ -1351,7 +1348,7 @@ section {
 }
 
 .story-gallery__card {
-  background: #f4d03f;
+  background: #d2a000;
   color: #1a1a1a;
   padding: 2rem 2.25rem;
   border-radius: 12px;
@@ -1599,7 +1596,7 @@ section {
 }
 
 .admin-aside__title {
-  font-size: 1.125rem;
+  font-size: 18px !important;
   font-weight: 600;
   color: #1e293b;
 }
@@ -1648,25 +1645,30 @@ section {
 .admin-nav-link {
   display: block;
   border-radius: 0.5rem;
+  border: 1px solid #ccc;
   padding: 0.625rem 0.75rem;
-  font-size: 0.875rem;
+  background: #fff;
+  font-size: 18px !important;
   font-weight: 500;
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .admin-nav-link--active {
-  background: #f1f5f9;
-  color: #0f172a;
+  background: #e8f4f6;
+  border-color: #35aec2;
+  color: #1a1a1a;
 }
 
 .admin-nav-link--inactive {
   color: #64748b;
 }
 
+
 .admin-nav-link--inactive:hover {
-  background: #f8fafc;
-  color: #0f172a;
+  background: #e8f4f6;
+  border-color: #35aec2;
+  color: #1a1a1a;
 }
 
 .admin-aside__footer {
@@ -1723,6 +1725,7 @@ section {
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-top: 50px;
 }
 
 .admin-page__title {
@@ -1757,35 +1760,62 @@ section {
 .admin-card {
   border-radius: 0.75rem;
   border: 1px solid #e2e8f0;
-  background: #fff;
+  background: #2a2a2a !important;
   padding: 1.25rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
 }
 
 .admin-card__label {
-  font-size: 0.875rem;
+  font-size: 20px !important;
   font-weight: 500;
-  color: #64748b;
+  color: #fff !important;
 }
 
 .admin-card__value {
   margin-top: 0.25rem;
-  font-size: 1.5rem;
+  font-size: 20px;
   font-weight: 600;
-  color: #0f172a;
+  color: #fff !important;
 }
 
 .admin-card__link {
-  display: inline-block;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
   margin-top: 0.75rem;
-  font-size: 0.875rem;
+  font-size: 20px;
   font-weight: 500;
-  color: #2563eb;
+  color: black;
   text-decoration: none;
 }
 
+.admin-card-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center;
+  gap: 0.5rem !important;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  border: none;
+  background: rgb(210, 160, 0);
+  color: #0f172a;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+
+
 .admin-card__link:hover {
   text-decoration: underline;
+}
+
+.admin-card__link.admin-card-button:hover {
+  text-decoration: none;
 }
 
 .admin-welcome {
@@ -1809,14 +1839,14 @@ section {
 
 .admin-page-header {
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
   gap: 1rem;
   align-items: flex-start;
 }
 
 @media (min-width: 640px) {
   .admin-page-header {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
   }
@@ -1970,7 +2000,7 @@ section {
 }
 
 .admin-form__label {
-  font-size: 0.875rem;
+  font-size: 18px !important;
   font-weight: 500;
   color: #334155;
 }

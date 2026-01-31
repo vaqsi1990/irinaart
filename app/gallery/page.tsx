@@ -23,7 +23,7 @@ export default function Gallery() {
       <Link href={`/products/${item.id}`} className=" block text-black text-lg font-medium hover:underline">
         <h3>{item.name}</h3>
       </Link>
-      <p className="text-black text-[18px] font-bold mt-1">{item.price}</p>
+    
     </div>
   ))}
 </div>

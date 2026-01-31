@@ -100,9 +100,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             <div className="product-info">
               <h1 className="product-title">{product.name}</h1>
 
-              <div className="product-price">
-                <span className="price-amount">{product.price}</span>
-              </div>
+              
 
               <div className="product-description">
                 <p>
@@ -111,9 +109,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                 </p>
               </div>
 
-              <Link href="/contact" className="rounded-md product-detail-button">
-                დაკავშირება
-              </Link>
+              
             </div>
           </div>
         </div>
