@@ -77,10 +77,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   }, [product.id]);
 
   return (
-    <>
-      <div className="" />
-
-      <div ref={pageRef} className="product-details-section">
+    <div ref={pageRef} className="product-details-section">
         <div className="product-details-container">
           <Link href="/gallery" className="back-link">
             <Image src="/back.png" alt="arrow-left" width={20} height={20} /> გალერეაში დაბრუნება
@@ -120,7 +117,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </div>
           </div>
         </div>
-      </div>
-    </>
+    </div>
   );
 }
