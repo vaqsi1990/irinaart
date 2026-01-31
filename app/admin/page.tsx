@@ -19,18 +19,12 @@ export default function AdminDashboard() {
             მართვა <Image src="/right-arrow.png" alt="arrow-left" width={20} height={20} />
           </Link>
         </div>
-        <div className="admin-card">
-          <h2 className="admin-card__label">კოლექციები</h2>
-          <p className="admin-card__value">13</p>
-          <Link href="/admin/collections" className="admin-card__link admin-card-button flex items-center gap-2">
-            მართვა <Image src="/right-arrow.png" alt="arrow-left" width={20} height={20} />
-          </Link>
-        </div>
+        
       </div>
       <div className="admin-welcome">
         <h2 className="admin-welcome__title">მოგესალმებით</h2>
         <p className="admin-welcome__text">
-          გამოიყენეთ მენიუ მარჯვნივ ნახატების, გამოფენების და კოლექციების მართვისთვის.
+          გამოიყენეთ მენიუ მარჯვნივ ნახატების, გამოფენების მართვისთვის.
         </p>
       </div>
     </div>

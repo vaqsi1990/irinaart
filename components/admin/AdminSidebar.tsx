@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useCallback } from "react";
-
+import Image from "next/image";
 const NAV_ITEMS = [
   { href: "/admin", label: "პანელი" },
   { href: "/admin/paintings", label: "ნახატები" },
   { href: "/admin/exhibitions", label: "გამოფენები" },
-  { href: "/admin/collections", label: "კოლექციები" },
+
 ];
 
 export default function AdminSidebar() {
@@ -94,7 +94,7 @@ export default function AdminSidebar() {
           </nav>
           <div className="admin-aside__footer">
             <Link href="/" className="admin-back-link">
-              ← უკან საიტზე
+              <Image src="/back.png" alt="arrow-left" width={15} height={15} /> უკან საიტზე
             </Link>
             <button
               type="button"

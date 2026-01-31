@@ -1677,10 +1677,13 @@ section {
 }
 
 .admin-back-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   border-radius: 0.5rem;
+  border: 1px solid black;
   padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
+  font-size: 16px ;
   color: #64748b;
   text-decoration: none;
   transition: background 0.2s ease, color 0.2s ease;
@@ -1697,7 +1700,7 @@ section {
   margin-top: 0.5rem;
   border-radius: 0.5rem;
   padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
+  font-size: 16px !important;
   color: #64748b;
   background: transparent;
   border: 1px solid #e2e8f0;
@@ -1753,7 +1756,7 @@ section {
 
 @media (min-width: 1024px) {
   .admin-cards {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -2012,7 +2015,7 @@ section {
   border-radius: 0.5rem;
   border: 1px solid #e2e8f0;
   padding: 0.625rem 0.75rem;
-  font-size: 1rem;
+  font-size: 16px !important;
   background: #fff;
   color: #0f172a;
 }
@@ -2030,10 +2033,7 @@ section {
   color: #94a3b8;
 }
 
-.admin-form__textarea {
-  min-height: 6rem;
-  resize: vertical;
-}
+
 
 .admin-form__error {
   font-size: 0.875rem;
@@ -2075,19 +2075,16 @@ section {
   padding: 0.75rem 1.25rem;
   overflow: visible !important;
   border-radius: 0.5rem;
-  background: #2563eb;
+  background: #35aec2;
   color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 20px !important;
+  
   cursor: pointer;
   transition: background 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.upload-thing-image-upload label[data-ut-element="button"]:hover {
-  background: #1d4ed8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+
 
 /* Hide native file input – only our custom text shows */
 .upload-thing-image-upload label[data-ut-element="button"] input[type="file"] {
@@ -2097,6 +2094,10 @@ section {
   opacity: 0;
   overflow: hidden;
   z-index: -1;
+}
+
+input placeholder {
+  font-size: 16px !important;
 }
 
 /* Allowed content text below button */
