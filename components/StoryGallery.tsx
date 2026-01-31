@@ -97,16 +97,7 @@ export default function StoryGallery({
           </svg>
         </button>
 
-        <div className="story-gallery__nav-center">
-          <span className="story-gallery__nav-counter" aria-live="polite">
-            {current + 1}/{total}
-          </span>
-          {centerButtonLabel && (
-            <button type="button" className="story-gallery__nav-brand" aria-label="Current section">
-              {centerButtonLabel}.
-            </button>
-          )}
-        </div>
+      
 
         <button
           type="button"
