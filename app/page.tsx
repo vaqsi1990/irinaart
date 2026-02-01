@@ -5,6 +5,9 @@ import { storySlides } from "@/data/storySlides";
 import prisma from "@/lib/prisma";
 import type { StorySlide } from "@/data/storySlides";
 
+/** Always fetch fresh data on Vercel (no static cache at build) */
+export const dynamic = "force-dynamic";
+
 function exhibitionsToSlides(
   exhibitions: { id: number; image: string; title: string; date: string; location: string; description: string }[]
 ): StorySlide[] {

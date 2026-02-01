@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
 
+/** Always fetch fresh data on Vercel (no static cache at build) */
+export const dynamic = "force-dynamic";
+
 const PER_PAGE = 8;
 
 type Props = { searchParams: Promise<{ page?: string; category?: string }> };
