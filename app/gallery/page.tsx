@@ -1,35 +1,133 @@
 import Image from "next/image";
 import Link from "next/link";
-import { galleryItems } from "@/data/galleryItems";
+import prisma from "@/lib/prisma";
 
-export default function Gallery() {
+const PER_PAGE = 8;
+
+type Props = { searchParams: Promise<{ page?: string; category?: string }> };
+
+function buildQuery(category: number | null, page: number) {
+  const sp = new URLSearchParams();
+  if (category != null) sp.set("category", String(category));
+  if (page > 1) sp.set("page", String(page));
+  const q = sp.toString();
+  return q ? `?${q}` : "";
+}
+
+export default async function Gallery({ searchParams }: Props) {
+  const params = await searchParams;
+  const page = Math.max(1, parseInt(params.page ?? "1", 10) || 1);
+  const categoryParam = params.category;
+  const rawId =
+    categoryParam != null && categoryParam !== ""
+      ? parseInt(categoryParam, 10)
+      : NaN;
+  const categoryId =
+    Number.isInteger(rawId) && rawId > 0 ? rawId : null;
+  const skip = (page - 1) * PER_PAGE;
+
+  const [collections, paintings, total] = await Promise.all([
+    prisma.collection.findMany({
+      orderBy: { order: "asc" },
+      select: { id: true, name: true },
+    }),
+    prisma.painting.findMany({
+      where: categoryId ? { collectionId: categoryId } : undefined,
+      orderBy: { createdAt: "desc" },
+      take: PER_PAGE,
+      skip,
+    }),
+    prisma.painting.count({
+      where: categoryId ? { collectionId: categoryId } : undefined,
+    }),
+  ]);
+
+  const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
+  const hasPrev = page > 1;
+  const hasNext = page < totalPages;
+
   return (
     <div className="px-6 !mb-14 py-16 mt flex justify-center">
       <div className="max-w-7xl mx-auto w-full">
-      <div className="grid grid-cols-4  gap-10">
-  {galleryItems.map((item) => (
-    <div key={item.id} className="text-center">
-      <Link href={`/products/${item.id}`} className="block group mb">
-        <div className="relative w-full aspect-square overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-[1.02]">
-          <Image
-            src={item.image}
-            alt={item.name}
-            fill
-            sizes="(max-width: 768px) 100vw, 25vw"
-            className="object-cover"
-          />
+        {/* Category filter */}
+        <div className="gallery-filters mb-10">
+          <span className="gallery-filters__label">კატეგორია:</span>
+          <div className="gallery-filters__buttons">
+            <Link
+              href="/gallery"
+              className={`gallery-filter-btn ${categoryId === null ? "gallery-filter-btn--active" : ""}`}
+            >
+              ყველა
+            </Link>
+            {collections.map((c) => (
+              <Link
+                key={c.id}
+                href={`/gallery?category=${c.id}`}
+                className={`gallery-filter-btn ${categoryId === c.id ? "gallery-filter-btn--active" : ""}`}
+              >
+                {c.name}
+              </Link>
+            ))}
+          </div>
         </div>
-      </Link>
-      <Link href={`/products/${item.id}`} className=" block text-black text-lg font-medium hover:underline">
-        <h3>{item.name}</h3>
-      </Link>
-    
-    </div>
-  ))}
-</div>
 
+        <div className="grid mmt  grid-cols-2 sm:grid-cols-4 gap-10">
+          {paintings.length === 0 ? (
+            <p className="col-span-full text-center text-gray-500 py-12">
+              ნახატები ჯერ არ არის.
+            </p>
+          ) : (
+            paintings.map((item) => (
+              <div key={item.id} className="text-center">
+                <Link href={`/products/${item.id}`} className="block group mb">
+                  <div className="relative w-full aspect-square overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-[1.02]">
+                    <Image
+                      src={item.image}
+                      alt={item.alt || item.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 25vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </Link>
+                <Link
+                  href={`/products/${item.id}`}
+                  className="block text-black text-lg font-medium hover:underline"
+                >
+                  <h3>{item.name}</h3>
+                </Link>
+              </div>
+            ))
+          )}
+        </div>
+
+        {totalPages > 1 && (
+          <nav
+            className="mt-12 flex flex-wrap items-center justify-center gap-2"
+            aria-label="გალერეის გვერდები"
+          >
+            {hasPrev && (
+              <Link
+                href={`/gallery${buildQuery(categoryId, page - 1)}`}
+                className="gallery-pagination-btn gallery-pagination-btn--prev"
+              >
+                ← წინა
+              </Link>
+            )}
+            <span className="gallery-pagination-info">
+              გვერდი {page} / {totalPages}
+            </span>
+            {hasNext && (
+              <Link
+                href={`/gallery${buildQuery(categoryId, page + 1)}`}
+                className="gallery-pagination-btn gallery-pagination-btn--next"
+              >
+                შემდეგი →
+              </Link>
+            )}
+          </nav>
+        )}
       </div>
     </div>
-
   );
 }

@@ -1,44 +1,74 @@
 "use client";
 
-import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { galleryItems } from '@/data/galleryItems'
-import { collections } from '@/data/collections'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import { useRef } from 'react'
+import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
+type Collection = { id: number; name: string; order?: number };
+type Painting = {
+  id: number;
+  image: string;
+  alt: string;
+  name: string;
+  collectionId: number;
+  collection: { id: number; name: string };
+};
+
+const CATEGORIES_LIMIT = 4;
 
 const Categories = () => {
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const paintRef = useRef<HTMLDivElement>(null)
-  const [paintAnimated, setPaintAnimated] = useState(false)
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const paintRef = useRef<HTMLDivElement>(null);
+  const [paintAnimated, setPaintAnimated] = useState(false);
+  const [collections, setCollections] = useState<Collection[]>([]);
+  const [paintings, setPaintings] = useState<Painting[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("venice carnaval");
 
   useEffect(() => {
-    if (!paintRef.current) return
-    const el = paintRef.current
+    if (!paintRef.current) return;
+    const el = paintRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setPaintAnimated(true)
+        if (entry.isIntersecting) setPaintAnimated(true);
       },
-      { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-  const [selectedCategory, setSelectedCategory] = useState<string>('all')
+      { threshold: 0.2, rootMargin: "0px 0px -50px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
-  // Category buttons from collections
-  const categoryButtons = [
-    { name: 'ყველა', value: 'all' },
-    ...collections.map((c) => ({ name: c.name, value: c.name }))
-  ]
+  useEffect(() => {
+    Promise.all([
+      fetch("/api/collections").then((r) => r.json()),
+      fetch("/api/paintings").then((r) => r.json()),
+    ])
+      .then(([cols, arts]) => {
+        if (Array.isArray(cols)) {
+          setCollections(cols);
+          const firstFour = cols.slice(0, CATEGORIES_LIMIT);
+          const hasVenice = firstFour.some(
+            (c: Collection) => c.name.toLowerCase() === "venice carnaval"
+          );
+          if (!hasVenice && firstFour.length > 0) {
+            setSelectedCategory((prev) =>
+              prev === "venice carnaval" ? firstFour[0].name : prev
+            );
+          }
+        }
+        if (Array.isArray(arts)) setPaintings(arts);
+      })
+      .catch(() => {});
+  }, []);
 
-  // Artworks filtered by selected collection (collection name matches galleryItem.name)
-  const getFilteredArtworks = (): typeof galleryItems => {
-    if (selectedCategory === 'all') return galleryItems
-    return galleryItems.filter((a) => a.name === selectedCategory)
-  }
-  const filteredArtworks = getFilteredArtworks()
+  // Only first 4 categories from API (no "all")
+  const categoryButtons = collections
+    .slice(0, CATEGORIES_LIMIT)
+    .map((c) => ({ name: c.name, value: c.name }));
+
+  const filteredArtworks = paintings.filter(
+    (p) => p.collection?.name === selectedCategory
+  );
 
   useGSAP(() => {
     if (!sectionRef.current) return
@@ -86,25 +116,29 @@ const Categories = () => {
         </div>
         
         <div className="categories-grid filtered" key={selectedCategory}>
-          {filteredArtworks.map((artwork, index) => (
-            <div key={artwork.id} className="category-item">
-              <div className="category-frame-outer">
-                <div className="category-frame-inner">
-                  <Link href={`/products/${artwork.id}`}>
-                    <img
-                      src={artwork.image}
-                      alt={artwork.alt || artwork.name}
-                      loading={index < 6 ? "eager" : "lazy"}
-                      decoding="async"
-                    />
-                  </Link>
+          {filteredArtworks.length === 0 ? (
+            <p className="categories-empty">ნახატები ჯერ არ არის.</p>
+          ) : (
+            filteredArtworks.map((artwork, index) => (
+              <div key={artwork.id} className="category-item">
+                <div className="category-frame-outer">
+                  <div className="category-frame-inner">
+                    <Link href={`/products/${artwork.id}`}>
+                      <img
+                        src={artwork.image}
+                        alt={artwork.alt || artwork.name}
+                        loading={index < 6 ? "eager" : "lazy"}
+                        decoding="async"
+                      />
+                    </Link>
+                  </div>
+                </div>
+                <div className="category-art-info">
+                  <h3>{artwork.name}</h3>
                 </div>
               </div>
-              <div className="category-art-info">
-                <h3>{artwork.name}</h3>
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>
