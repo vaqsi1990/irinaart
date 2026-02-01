@@ -41,7 +41,7 @@ export default async function Gallery({ searchParams }: Props) {
       where: categoryId ? { collectionId: categoryId } : undefined,
     }),
   ]);
-
+console.log(total);
   const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
   const hasPrev = page > 1;
   const hasNext = page < totalPages;
