@@ -47,10 +47,10 @@ export default async function Gallery({ searchParams }: Props) {
   const hasNext = page < totalPages;
 
   return (
-    <div className="px-6 !mb-14 py-16 mt flex justify-center">
-      <div className="max-w-7xl mx-auto w-full">
+    <div className="gallery-page-wrap">
+      <div className="gallery-page-container">
         {/* Category filter */}
-        <div className="gallery-filters mb-10">
+        <div className="gallery-filters">
           <span className="gallery-filters__label">კატეგორია:</span>
           <div className="gallery-filters__buttons">
             <Link
@@ -71,29 +71,26 @@ export default async function Gallery({ searchParams }: Props) {
           </div>
         </div>
 
-        <div className="grid mmt  grid-cols-2 sm:grid-cols-4 gap-10">
+        <div className="gallery-grid-responsive">
           {paintings.length === 0 ? (
-            <p className="col-span-full text-center text-gray-500 py-12">
+            <p className="gallery-empty-msg">
               ნახატები ჯერ არ არის.
             </p>
           ) : (
             paintings.map((item) => (
-              <div key={item.id} className="text-center">
-                <Link href={`/products/${item.id}`} className="block group mb">
-                  <div className="relative w-full aspect-square overflow-hidden rounded-lg transition-transform duration-300 group-hover:scale-[1.02]">
+              <div key={item.id} className="gallery-item-card">
+                <Link href={`/products/${item.id}`} className="gallery-item-card__link">
+                  <div className="gallery-item-card__img-wrap">
                     <Image
                       src={item.image}
                       alt={item.alt || item.name}
                       fill
-                      sizes="(max-width: 768px) 100vw, 25vw"
+                      sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       className="object-cover"
                     />
                   </div>
                 </Link>
-                <Link
-                  href={`/products/${item.id}`}
-                  className="block text-black text-lg font-medium hover:underline"
-                >
+                <Link href={`/products/${item.id}`} className="gallery-item-card__title">
                   <h3>{item.name}</h3>
                 </Link>
               </div>
@@ -103,7 +100,7 @@ export default async function Gallery({ searchParams }: Props) {
 
         {totalPages > 1 && (
           <nav
-            className="mt-12 flex flex-wrap items-center justify-center gap-2"
+            className="gallery-pagination"
             aria-label="გალერეის გვერდები"
           >
             {hasPrev && (
