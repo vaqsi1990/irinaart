@@ -14,9 +14,9 @@ type FooterProps = {
 
 export default function Footer({
   facebookUrl = "https://www.facebook.com/",
-  whatsappNumber = "995555123456",
+  whatsappNumber = "99599273228 ",
 }: FooterProps) {
-
+  59927322
 
   return (
     <footer className="siteFooter">
