@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Categories from "@/components/Categories";
 import StoryGallery from "@/components/StoryGallery";
+import Certificates from "@/components/Certificates";
 import { storySlides } from "@/data/storySlides";
 import prisma from "@/lib/prisma";
 import type { StorySlide } from "@/data/storySlides";
@@ -45,6 +46,7 @@ export default async function Home() {
       <Hero />
       <Categories />
       <StoryGallery slides={slides} centerButtonLabel="W" />
+      <Certificates title="Certificates" />
     </>
   );
 }
