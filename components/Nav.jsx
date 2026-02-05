@@ -40,8 +40,8 @@ export default function Nav() {
           <TransitionLink className="siteNav__link" href="/gallery" onClick={closeMenu}>
             გალერეა
           </TransitionLink>
-          <TransitionLink className="siteNav__link" href="/contact" onClick={closeMenu}>
-            კონტაქტი
+          <TransitionLink className="siteNav__link" href="/about" onClick={closeMenu}>
+            ჩემს შესახებ
           </TransitionLink>
         </div>
       </div>
