@@ -24,7 +24,7 @@ export default function Certificates({ title = "Certificates", className = "" }:
 
   return (
    <>
-    <h2 className="certificates-title">სერტიფიკატები</h2>
+    <h2 className="certificates-title text-[30px] text-[24px]">სერტიფიკატები</h2>
    <div className="mt-14 certificates-section flex justify-center px-4" style={{ marginBottom: "2rem" }}>
       <div className="certificates-container grid grid-cols-2 sm:grid-cols-3 gap-4">
         {CERTIFICATE_IMAGES.map(({ src, alt }) => (
