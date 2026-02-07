@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "home": "Home",
+    "gallery": "Gallery",
+    "about": "About Me"
+  },
+  "about": {
+    "title": "Irina Dzamashvili",
+    "paragraphs": [
+      "Irina Dzamashvili was born in Tbilisi, Georgia on January 8, 1977. Her father, Edward Lapkovsky, was a Polish artist born in Georgia who graduated from the Academy of Arts and earned the title of Honored Artist of Georgia. Irina spent her entire childhood in a film studio where her father worked as an art director and decorator, and from an early age she was exposed to painting and the process of creating decorations. Irina studied at Elene Akhvlediani's art school and also at the Youth Center, and from childhood she learned such disciplines as wood carving, blacksmithing, embroidery, painting, and graphics. From a young age, she participated in various exhibitions and competitions, both in Georgia and abroad.",
+      "From 1994-1999, she studied and graduated with honors from Tbilisi State Academy Apollon Kutateladze, Faculty of Folk Crafts, specializing in \"Gobelin\" under the guidance of Mr. Givi Kandareli. Recently, she has participated in the following exhibitions: \"Art Friends'\" group exhibitions 2021-2022; 2021 - Picasso Jubilee, Gallery 9, Tbilisi; 2021-2022: 2021 - \"Dialogue with Colors\" Silk Gallery, Tbilisi; 2021 - \"Art Feast\" at Merab Berdzenishvili International Culture Center \"Muse\".",
+      "2022 - Georgian-Armenian exhibition-competition, dedicated to Sergei Parajanov's jubilee, which was held at Tbilisi City Council organized by the Georgian-Armenian Union. March 2022 - Spandan International Online Exhibition, India, Goa. Awarded the Spandan International Award as the best work. April 2022 - \"Philosophy of Colors\" Georgian National Museum, Tbilisi. May 8-14, 2022 - \"Art Evenings\" Athens, Greece.",
+      "2022 - September 26-29, participated in Spandan Global International Indo-Georgian Art Festival, Yart Gallery, Tbilisi. 2023 - Georgian-Armenian exhibition competition, dedicated to Sergei Parajanov's jubilee, which was held at the Georgian-Armenian Union organized at the National Library of Tbilisi. She has held 2 personal exhibitions on October 6-9, 2022 and May 11-14, 2023, at the Silk Gallery in Tbilisi. November 25-30, 2022 group exhibition at BDMC Gallery, Paris.",
+      "On March 16, 2023, her work on the theme \"Femicide\" was among the best 20 works, which was held at the Georgian National Archive Exhibition Hall and was awarded with a certificate and a commemorative gift. The competition was organized and held by the Ministry of Justice of Georgia. On May 11-14, the 2nd personal exhibition entitled \"Colors of Love\" was held, where 50 paintings were presented.",
+      "In August 2025, she held a personal exhibition at the Telavi Historical Museum. March 1-14, the first personal exhibition abroad, specifically in Spain. This will be followed by 2 more exhibitions at a famous yacht club and gallery in Spain. On December 7-12, 2025, a group exhibition was planned and successfully held at the Martqopi Historical Museum, organized by her.",
+      "She has created more than 1000 interesting and original works, which have earned great interest from Georgian and foreign specialists and viewers. Irina's works are distinguished by the variety of colors and decorative elements, she has developed an author's technique on black canvas with which she has executed views of Tbilisi streets. Her works are kept in private collections, both in Georgia and abroad, specifically: in America, Great Britain, Israel, India, Italy, Russia, and Australia."
+    ]
+  },
+  "categories": {
+    "noPaintings": "No paintings yet."
+  },
+  "gallery": {
+    "categoryLabel": "Category",
+    "all": "All",
+    "noPaintings": "No paintings yet.",
+    "paginationLabel": "Gallery pages",
+    "prev": "Previous",
+    "next": "Next",
+    "page": "Page {current} / {total}"
+  },
+  "hero": {
+    "heading": "Explore\nWorks",
+    "cta": "Go to Gallery"
+  },
+  "certificates": {
+    "title": "Certificates"
+  },
+  "product": {
+    "backToGallery": "Back to Gallery"
+  },
+  "common": {
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu"
+  }
+}
+

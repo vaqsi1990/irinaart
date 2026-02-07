@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const CERTIFICATE_IMAGES = [
   { src: "/certificates/1.jpg", alt: "Certificate 1" },
@@ -19,7 +20,9 @@ type CertificatesProps = {
   className?: string;
 };
 
-export default function Certificates({ title = "Certificates", className = "" }: CertificatesProps) {
+export default function Certificates({ title, className = "" }: CertificatesProps) {
+  const t = useTranslations("certificates");
+  const displayTitle = title || t("title");
   const [selected, setSelected] = useState<{ src: string; alt: string } | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(3);
@@ -52,7 +55,7 @@ export default function Certificates({ title = "Certificates", className = "" }:
 
   return (
     <>
-      <h2 className="certificates-title text-[30px] text-[24px]">სერტიფიკატები</h2>
+      <h2 className="certificates-title text-[30px] text-[24px]">{displayTitle}</h2>
       <div className="mt-14 certificates-section flex justify-center px-4" style={{ marginBottom: "2rem" }}>
         <div className="relative w-full max-w-6xl">
           {/* Carousel Container */}

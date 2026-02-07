@@ -1,5 +1,7 @@
-import Link from "next/link";
+"use client";
 
+import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 import { FaWhatsapp, FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 
 const phoneNumber = "+9955599273228";
@@ -16,23 +18,24 @@ export default function Footer({
   facebookUrl = "https://www.facebook.com/",
   whatsappNumber = "99599273228 ",
 }: FooterProps) {
-  59927322
+  const t = useTranslations("nav");
+  const locale = useLocale();
 
   return (
     <footer className="siteFooter">
       <div className="siteFooter__inner">
-        <Link href="/" className="siteFooter__name">
+        <Link href={`/${locale}`} className="siteFooter__name">
           Irina Art
         </Link>
         <nav className="siteFooter__nav" aria-label="Footer">
-          <Link href="/" className="siteFooter__link">
-            მთავარი
+          <Link href={`/${locale}`} className="siteFooter__link">
+            {t("home")}
           </Link>
-          <Link href="/gallery" className="siteFooter__link">
-            გალერეა
+          <Link href={`/${locale}/gallery`} className="siteFooter__link">
+            {t("gallery")}
           </Link>
-          <Link href="/contact" className="siteFooter__link">
-            კონტაქტი
+          <Link href={`/${locale}/about`} className="siteFooter__link">
+            {t("about")}
           </Link>
         </nav>
         <div className="siteFooter__contacts" aria-label="კონტაქტი">

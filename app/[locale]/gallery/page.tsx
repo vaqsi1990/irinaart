@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import prisma from "@/lib/prisma";
 
 /** Always fetch fresh data on Vercel (no static cache at build) */
@@ -7,20 +8,25 @@ export const dynamic = "force-dynamic";
 
 const PER_PAGE = 8;
 
-type Props = { searchParams: Promise<{ page?: string; category?: string }> };
+type Props = { 
+  searchParams: Promise<{ page?: string; category?: string }>;
+  params: Promise<{ locale: string }>;
+};
 
-function buildQuery(category: number | null, page: number) {
+function buildQuery(category: number | null, page: number, locale: string) {
   const sp = new URLSearchParams();
   if (category != null) sp.set("category", String(category));
   if (page > 1) sp.set("page", String(page));
   const q = sp.toString();
-  return q ? `?${q}` : "";
+  return q ? `/${locale}/gallery?${q}` : `/${locale}/gallery`;
 }
 
-export default async function Gallery({ searchParams }: Props) {
-  const params = await searchParams;
-  const page = Math.max(1, parseInt(params.page ?? "1", 10) || 1);
-  const categoryParam = params.category;
+export default async function Gallery({ searchParams, params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations("gallery");
+  const paramsData = await searchParams;
+  const page = Math.max(1, parseInt(paramsData.page ?? "1", 10) || 1);
+  const categoryParam = paramsData.category;
   const rawId =
     categoryParam != null && categoryParam !== ""
       ? parseInt(categoryParam, 10)
@@ -44,7 +50,7 @@ export default async function Gallery({ searchParams }: Props) {
       where: categoryId ? { collectionId: categoryId } : undefined,
     }),
   ]);
-console.log(total);
+
   const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
   const hasPrev = page > 1;
   const hasNext = page < totalPages;
@@ -54,18 +60,18 @@ console.log(total);
       <div className="gallery-page-container">
         {/* Category filter */}
         <div className="gallery-filters">
-          <span className="gallery-filters__label">კატეგორია:</span>
+          <span className="gallery-filters__label">{t("categoryLabel")}:</span>
           <div className="gallery-filters__buttons">
             <Link
-              href="/gallery"
+              href={`/${locale}/gallery`}
               className={`gallery-filter-btn ${categoryId === null ? "gallery-filter-btn--active" : ""}`}
             >
-              ყველა
+              {t("all")}
             </Link>
             {collections.map((c) => (
               <Link
                 key={c.id}
-                href={`/gallery?category=${c.id}`}
+                href={`/${locale}/gallery?category=${c.id}`}
                 className={`gallery-filter-btn ${categoryId === c.id ? "gallery-filter-btn--active" : ""}`}
               >
                 {c.name}
@@ -77,12 +83,12 @@ console.log(total);
         <div className="gallery-grid-responsive">
           {paintings.length === 0 ? (
             <p className="gallery-empty-msg">
-              ნახატები ჯერ არ არის.
+              {t("noPaintings")}
             </p>
           ) : (
             paintings.map((item) => (
               <div key={item.id} className="gallery-item-card">
-                <Link href={`/products/${item.id}`} className="gallery-item-card__link">
+                <Link href={`/${locale}/products/${item.id}`} className="gallery-item-card__link">
                   <div className="gallery-item-card__img-wrap">
                     <Image
                       src={item.image}
@@ -93,7 +99,7 @@ console.log(total);
                     />
                   </div>
                 </Link>
-                <Link href={`/products/${item.id}`} className="gallery-item-card__title">
+                <Link href={`/${locale}/products/${item.id}`} className="gallery-item-card__title">
                   <h3>{item.name}</h3>
                 </Link>
               </div>
@@ -104,25 +110,25 @@ console.log(total);
         {totalPages > 1 && (
           <nav
             className="gallery-pagination"
-            aria-label="გალერეის გვერდები"
+            aria-label={t("paginationLabel")}
           >
             {hasPrev && (
               <Link
-                href={`/gallery${buildQuery(categoryId, page - 1)}`}
+                href={buildQuery(categoryId, page - 1, locale)}
                 className="gallery-pagination-btn gallery-pagination-btn--prev"
               >
-                ← წინა
+                ← {t("prev")}
               </Link>
             )}
             <span className="gallery-pagination-info">
-              გვერდი {page} / {totalPages}
+              {t("page", { current: page, total: totalPages })}
             </span>
             {hasNext && (
               <Link
-                href={`/gallery${buildQuery(categoryId, page + 1)}`}
+                href={buildQuery(categoryId, page + 1, locale)}
                 className="gallery-pagination-btn gallery-pagination-btn--next"
               >
-                შემდეგი →
+                {t("next")} →
               </Link>
             )}
           </nav>
@@ -131,3 +137,4 @@ console.log(total);
     </div>
   );
 }
+

@@ -5,8 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { galleryItems } from "@/data/galleryItems";
+import { useTranslations, useLocale } from "next-intl";
 
 const Hero = () => {
+  const t = useTranslations("hero");
+  const locale = useLocale();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [entering, setEntering] = useState(true); // start true so initial load animates
   const primaryFrameRef = useRef<HTMLDivElement>(null);
@@ -117,14 +120,16 @@ const Hero = () => {
 
         <div className="hero-home__content">
           <h1 className="hero-home__heading">
-           დაათვალიერეთ
-            <br />
-         
-           ნამუშევრები
+            {t("heading").split("\n").map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                {i < t("heading").split("\n").length - 1 && <br />}
+              </React.Fragment>
+            ))}
           </h1>
           
-          <Link href="/gallery" className="siteNav__link">
-        გადადით  გალერეაში
+          <Link href={`/${locale}/gallery`} className="siteNav__link">
+            {t("cta")}
           </Link>
           <div className="hero-home__arrows">
             <button

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useTranslations, useLocale } from "next-intl";
 
 type Collection = { id: number; name: string; order?: number };
 type Painting = {
@@ -18,6 +19,8 @@ type Painting = {
 const CATEGORIES_LIMIT = 4;
 
 const Categories = () => {
+  const t = useTranslations("categories");
+  const locale = useLocale();
   const sectionRef = useRef<HTMLDivElement>(null);
   const paintRef = useRef<HTMLDivElement>(null);
   const [paintAnimated, setPaintAnimated] = useState(false);
@@ -117,13 +120,13 @@ const Categories = () => {
         
         <div className="categories-grid filtered" key={selectedCategory}>
           {filteredArtworks.length === 0 ? (
-            <p className="categories-empty">ნახატები ჯერ არ არის.</p>
+            <p className="categories-empty">{t("noPaintings")}</p>
           ) : (
             filteredArtworks.map((artwork, index) => (
               <div key={artwork.id} className="category-item">
                 <div className="category-frame-outer">
                   <div className="category-frame-inner">
-                    <Link href={`/products/${artwork.id}`}>
+                    <Link href={`/${locale}/products/${artwork.id}`}>
                       <img
                         src={artwork.image}
                         alt={artwork.alt || artwork.name}

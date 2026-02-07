@@ -3,7 +3,7 @@ import { galleryItems } from "@/data/galleryItems";
 import ProductDetail from "@/components/ProductDetail";
 
 type Props = {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
 };
 
 export default async function ProductPage({ params }: Props) {
@@ -17,3 +17,4 @@ export default async function ProductPage({ params }: Props) {
 
   return <ProductDetail product={product} />;
 }
+

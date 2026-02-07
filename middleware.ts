@@ -1,4 +1,6 @@
+import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from "next/server";
+import { routing } from './routing';
 
 const COOKIE_NAME = "admin_session";
 const COOKIE_SALT = "admin";
@@ -18,21 +20,24 @@ async function getExpectedToken(password: string): Promise<string> {
   return arrayBufferToBase64Url(hash);
 }
 
+const intlMiddleware = createMiddleware(routing);
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (pathname === "/admin/login") {
-    return NextResponse.next();
+  // Handle admin authentication (before i18n)
+  if (pathname === "/admin/login" || pathname.startsWith("/admin/login")) {
+    return intlMiddleware(request);
   }
 
-  const isAdminPath = /^\/admin(\/.*)?$/.test(pathname);
+  const isAdminPath = /^\/(ka|en)?\/?admin(\/.*)?$/.test(pathname);
 
   if (isAdminPath) {
     const adminPassword = process.env.ADMIN_PASSWORD;
 
     if (!adminPassword) {
       console.warn("ADMIN_PASSWORD must be set in .env.local");
-      return NextResponse.next();
+      return intlMiddleware(request);
     }
 
     const cookieToken = request.cookies.get(COOKIE_NAME)?.value;
@@ -40,15 +45,18 @@ export async function middleware(request: NextRequest) {
 
     if (cookieToken !== expectedToken) {
       const url = request.nextUrl.clone();
-      url.pathname = "/admin/login";
+      // Extract locale from pathname
+      const localeMatch = pathname.match(/^\/(ka|en)/);
+      const locale = localeMatch ? localeMatch[1] : 'ka';
+      url.pathname = `/${locale}/admin/login`;
       url.searchParams.set("from", pathname);
       return NextResponse.redirect(url);
     }
   }
 
-  return NextResponse.next();
+  return intlMiddleware(request);
 }
 
 export const config = {
-  matcher: ["/admin", "/admin/:path*"],
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };
