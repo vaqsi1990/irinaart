@@ -25,8 +25,12 @@ const intlMiddleware = createMiddleware(routing);
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Handle admin authentication (before i18n)
-  if (pathname === "/admin/login" || pathname.startsWith("/admin/login")) {
+  // Allow admin login page (with or without locale) without auth
+  const isLoginPage =
+    pathname === "/admin/login" ||
+    pathname.startsWith("/admin/login") ||
+    /^\/(ka|en)\/admin\/login$/.test(pathname);
+  if (isLoginPage) {
     return intlMiddleware(request);
   }
 

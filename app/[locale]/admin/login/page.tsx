@@ -6,7 +6,9 @@ import { Suspense, useState } from "react";
 function AdminLoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const from = searchParams.get("from") || "/admin";
+  const rawFrom = searchParams.get("from") || "/admin";
+  // Avoid redirecting back to login after successful auth
+  const from = rawFrom.includes("/admin/login") ? "/admin" : rawFrom;
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
