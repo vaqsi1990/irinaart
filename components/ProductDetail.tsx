@@ -3,14 +3,23 @@
 import { useRef, useEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
-import type { GalleryItem } from "@/data/galleryItems";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
-type ProductDetailProps = {
-  product: GalleryItem;
+
+/** Shape from Prisma painting with include: { collection: true } */
+type PaintingWithCollection = {
+  id: number;
+  image: string;
+  alt: string;
+  name: string;
+  collection: { name: string };
 };
 
-export default function ProductDetail({ product }: ProductDetailProps) {
+type ProductDetailProps = {
+  painting: PaintingWithCollection;
+};
+
+export default function ProductDetail({ painting }: ProductDetailProps) {
   const t = useTranslations("product");
   const locale = useLocale();
   const pageRef = useRef<HTMLDivElement>(null);
@@ -77,7 +86,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     }, pageRef);
 
     return () => ctx.revert();
-  }, [product.id]);
+  }, [painting.id]);
 
   return (
     <div ref={pageRef} className="product-details-section">
@@ -91,8 +100,8 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <div className="frame-outer">
                 <div className="frame-inner">
                   <img
-                    src={product.image}
-                    alt={product.name}
+                    src={painting.image}
+                    alt={painting.alt ?? painting.name}
                     loading="eager"
                     decoding="async"
                   />
@@ -101,19 +110,17 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </div>
 
             <div className="product-info">
-              <h1 className="product-title">{product.name}</h1>
+              <h1 className="product-title">{painting.name}</h1>
 
-              
-
-              {product.collection && (
+              {painting.collection && (
                 <p className="product-collection">
-                  <strong>კოლექცია:</strong> {product.collection}
+                  <strong>კოლექცია:</strong> {painting.collection.name}
                 </p>
               )}
 
               <div className="product-description">
                 <p>
-                 {product.description}
+                 {/* Painting has no description field in schema; add to Prisma if needed */}
                 </p>
               </div>
 

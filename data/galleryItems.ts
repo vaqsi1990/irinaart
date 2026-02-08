@@ -18,6 +18,7 @@ export const galleryItems: GalleryItem[] = [
     name: "ზაფხულის ნახატი",
     collection: "ზაფხულის ნახატი",
     price: "₾180",
+    description: "ზაფხულის ნახატი",
   },
   {
     id: 1,
@@ -26,6 +27,7 @@ export const galleryItems: GalleryItem[] = [
     name: "პორტრეტი",
     collection: "ზაფხულის ნახატი",
     price: "₾220",
+    description: "პორტრეტი",
   },
   {
     id: 2,
@@ -34,6 +36,7 @@ export const galleryItems: GalleryItem[] = [
     name: "ნატურმორტი", 
     collection: "ნატურმორტი",
     price: "₾150",
+    description: "ნატურმორტი",
   },
   {
     id: 3,
@@ -42,6 +45,7 @@ export const galleryItems: GalleryItem[] = [
     name: "პეიზაჟი",
     collection: "პეიზაჟი",
     price: "₾200",
+    description: "პეიზაჟი",
   },
   {
     id: 4,
@@ -50,6 +54,7 @@ export const galleryItems: GalleryItem[] = [
     name: "აბსტრაქტული კომპოზიცია",
     collection: "პეიზაჟი",
     price: "₾250",
+    description: "აბსტრაქტული კომპოზიცია",
   },
   {
     id: 5,
@@ -58,6 +63,7 @@ export const galleryItems: GalleryItem[] = [
     name: "ინტერიერი",
     collection: "ნატურმორტი",
     price: "₾190",
+    description: "ინტერიერი",
   },
   {
     id: 6,
@@ -66,6 +72,7 @@ export const galleryItems: GalleryItem[] = [
     name: "ქანდაკება ბრონზში",
     collection: "ნატურმორტი",
     price: "₾320",
+    description: "ქანდაკება ბრონზში",
   },
   {
     id: 7,
@@ -74,6 +81,7 @@ export const galleryItems: GalleryItem[] = [
     name: "კერამიკა",
     collection: "პორტრეტი",
     price: "₾165",
+    description: "კერამიკა",
   },
  
 ];
