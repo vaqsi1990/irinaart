@@ -1,4 +1,5 @@
 export type GalleryItem = {
+  description: ReactNode;
   id: number;
   image: string;
   alt: string;

@@ -6,7 +6,7 @@ import prisma from "@/lib/prisma";
 /** Always fetch fresh data on Vercel (no static cache at build) */
 export const dynamic = "force-dynamic";
 
-const PER_PAGE = 8;
+const PER_PAGE = 12;
 
 type Props = { 
   searchParams: Promise<{ page?: string; category?: string }>;

@@ -105,10 +105,15 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
               
 
+              {product.collection && (
+                <p className="product-collection">
+                  <strong>კოლექცია:</strong> {product.collection}
+                </p>
+              )}
+
               <div className="product-description">
                 <p>
-                  ხელოვნების ნიმუში უნიკალური დიზაინითა და ხარისხიანი
-                  შესრულებით. დეტალებისთვის დაგვიკავშირდით.
+                 {product.description}
                 </p>
               </div>
 
