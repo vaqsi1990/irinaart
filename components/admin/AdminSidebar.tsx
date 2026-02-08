@@ -7,8 +7,8 @@ import Image from "next/image";
 const NAV_ITEMS = [
   { href: "/admin", label: "პანელი" },
   { href: "/admin/paintings", label: "ნახატები" },
+  { href: "/admin/collections", label: "კატეგორიები" },
   { href: "/admin/exhibitions", label: "გამოფენები" },
-
 ];
 
 export default function AdminSidebar() {
