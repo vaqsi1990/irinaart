@@ -91,7 +91,7 @@ export default function ProductDetail({ painting }: ProductDetailProps) {
   return (
     <div ref={pageRef} className="product-details-section">
         <div className="product-details-container">
-          <Link href={`/${locale}/gallery`} className="back-link">
+          <Link href={`/${locale}/gallery`} className="back-link !text-white">
             <Image src="/back.png" alt="arrow-left" width={20} height={20} /> {t("backToGallery")}
           </Link>
 
