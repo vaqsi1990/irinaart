@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export type GalleryItem = {
   description: ReactNode;
   id: number;
