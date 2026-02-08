@@ -31,7 +31,7 @@
 }
 
 body {
-  background-color: #85182b;
+  background-color: #85182b !important;
   color: var(--foreground);
 }
 
