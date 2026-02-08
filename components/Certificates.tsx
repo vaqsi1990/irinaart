@@ -117,7 +117,7 @@ export default function Certificates({ title, className = "" }: CertificatesProp
               
               {/* Mobile: Buttons below items - only show when itemsPerView is 1 (small screens) */}
               {itemsPerView === 1 && (
-                <div className="flex justify-center gap-4 mt-4">
+                <div className="flex justify-center gap-4 mt-14">
                   <button
                     type="button"
                     onClick={goPrev}
