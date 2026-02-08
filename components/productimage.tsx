@@ -86,7 +86,7 @@ const ImageUploadForProduct = ({ onChange, value }: ImageUploadProps): React.JSX
           </div>
         </div>
       ) : (
-        <p className="mt-1 text-gray-400 text-sm text-center">სურათები ჯერ არ არის ატვირთული. შეგიძლიათ რამდენიმე სურათი ერთდროულად ატვირთოთ (Ctrl+Click ან Shift+Click).</p>
+        <p className="mt-1 text-white text-sm text-center">სურათები ჯერ არ არის ატვირთული. შეგიძლიათ რამდენიმე სურათი ერთდროულად ატვირთოთ (Ctrl+Click ან Shift+Click).</p>
       )}
     </div>
   );

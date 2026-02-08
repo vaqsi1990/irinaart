@@ -35,7 +35,7 @@ export default function AdminSidebar() {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="admin-menu-btn"
+        className={`admin-menu-btn ${open ? "admin-menu-btn--menu-open" : ""}`}
         aria-label="მენიუ"
         aria-expanded={open}
       >
@@ -93,7 +93,7 @@ export default function AdminSidebar() {
             </ul>
           </nav>
           <div className="admin-aside__footer">
-            <Link href="/" className="admin-back-link">
+            <Link href="/" className="admin-btn-primary">
               <Image src="/back.png" alt="arrow-left" width={15} height={15} /> უკან საიტზე
             </Link>
             <button
