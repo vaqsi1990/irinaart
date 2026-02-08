@@ -69,9 +69,9 @@ const Categories = () => {
     .slice(0, CATEGORIES_LIMIT)
     .map((c) => ({ name: c.name, value: c.name }));
 
-  const filteredArtworks = paintings.filter(
-    (p) => p.collection?.name === selectedCategory
-  );
+  const filteredArtworks = paintings
+    .filter((p) => p.collection?.name === selectedCategory)
+    .slice(0, CATEGORIES_LIMIT);
 
   useGSAP(() => {
     if (!sectionRef.current) return
