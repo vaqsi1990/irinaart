@@ -512,7 +512,7 @@ section {
   padding: 0.375rem 0.75rem;
   font-size: 0.8125rem;
   font-weight: 500;
-  color: #475569;
+  color: #2a2a2a;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 0.375rem;
@@ -2449,7 +2449,7 @@ section {
 .admin-page__title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0f172a;
+  color: white !important;
 }
 
 @media (min-width: 768px) {
@@ -2998,13 +2998,14 @@ input placeholder {
   text-transform: uppercase;
   letter-spacing: 0.02em;
   margin: 0;
-  color: #1a1a1a;
+  color: white;
 }
 
 .about-page__content {
   display: grid;
   gap: 2rem;
   align-items: start;
+  color: white !important;
 }
 
 @media (min-width: 768px) {
