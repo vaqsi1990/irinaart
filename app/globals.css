@@ -732,7 +732,7 @@ section {
   display: flex;
   align-items: center;
   padding: 2rem max(1.5rem, 5vw) 3rem;
-  background-color: #4a4b1a;
+  background-color: teal;
   overflow: hidden;
 }
 
@@ -745,7 +745,7 @@ section {
 .hero-home__bg-solid {
   position: absolute;
   inset: 0;
-  background-color: #4a4b1a;
+ 
 }
 
 .hero-home__bg-image {
