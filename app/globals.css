@@ -698,7 +698,7 @@ section {
 .gallery-pagination-info {
   padding: 0 0.5rem;
   font-size: 0.8125rem;
-  color: #64748b;
+  color: white;
 }
 
 @media (min-width: 480px) {
@@ -871,6 +871,7 @@ section {
   line-height: 1.15;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  font-style: italic;
   color: #d2a000;
   margin: 0;
 }

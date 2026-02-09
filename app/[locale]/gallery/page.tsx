@@ -60,7 +60,7 @@ export default async function Gallery({ searchParams, params }: Props) {
       <div className="gallery-page-container">
         {/* Category filter */}
         <div className="gallery-filters">
-          <span className="gallery-filters__label">{t("categoryLabel")}:</span>
+        
           <div className="gallery-filters__buttons">
             <Link
               href={`/${locale}/gallery`}
