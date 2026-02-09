@@ -38,6 +38,12 @@
   "product": {
     "backToGallery": "გალერეაში დაბრუნება"
   },
+  "exhibition": {
+    "backToHome": "მთავარ გვერდზე",
+    "date": "თარიღი:",
+    "location": "ადგილმდებარეობა:",
+    "galleryTitle": "გამოფენის სურათები"
+  },
   "common": {
     "menu": "მენიუ",
     "closeMenu": "მენიუს დახურვა",

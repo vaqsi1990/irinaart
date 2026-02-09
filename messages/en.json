@@ -38,6 +38,12 @@
   "product": {
     "backToGallery": "Back to Gallery"
   },
+  "exhibition": {
+    "backToHome": "Back to Home",
+    "date": "Date:",
+    "location": "Location:",
+    "galleryTitle": "Exhibition Images"
+  },
   "common": {
     "menu": "Menu",
     "closeMenu": "Close menu",

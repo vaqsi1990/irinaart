@@ -22,6 +22,14 @@ export const createExhibitionSchema = z.object({
 
 export const updateExhibitionSchema = createExhibitionSchema.partial();
 
+export const createExhibitionImageSchema = z.object({
+  image: imageUrl,
+  alt: z.string().max(500).optional(),
+  exhibitionId: z.number().int().positive("Exhibition ID is required"),
+});
+
+export const updateExhibitionImageSchema = createExhibitionImageSchema.partial();
+
 export const createCollectionSchema = z.object({
   name: z.string().min(1, "Name is required").max(200),
   order: z.number().int().min(0).optional().default(0),
@@ -36,5 +44,7 @@ export type CreatePaintingInput = z.infer<typeof createPaintingSchema>;
 export type UpdatePaintingInput = z.infer<typeof updatePaintingSchema>;
 export type CreateExhibitionInput = z.infer<typeof createExhibitionSchema>;
 export type UpdateExhibitionInput = z.infer<typeof updateExhibitionSchema>;
+export type CreateExhibitionImageInput = z.infer<typeof createExhibitionImageSchema>;
+export type UpdateExhibitionImageInput = z.infer<typeof updateExhibitionImageSchema>;
 export type CreateCollectionInput = z.infer<typeof createCollectionSchema>;
 export type UpdateCollectionInput = z.infer<typeof updateCollectionSchema>;

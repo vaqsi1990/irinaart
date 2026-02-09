@@ -12,6 +12,7 @@ export async function GET(_request: NextRequest, { params }: Params) {
   try {
     const exhibition = await prisma.exhibition.findUnique({
       where: { id },
+      include: { images: true },
     });
     if (!exhibition) return apiNotFound("Exhibition not found");
     return apiJson(exhibition);

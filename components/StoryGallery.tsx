@@ -2,6 +2,8 @@
 
 import React, { useState, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useLocale } from "next-intl";
 import type { StorySlide } from "@/data/storySlides";
 
 type StoryGalleryProps = {
@@ -21,6 +23,7 @@ export default function StoryGallery({
   centerButtonLabel = "W",
   className = "",
 }: StoryGalleryProps) {
+  const locale = useLocale();
   const [current, setCurrent] = useState(0);
   const total = slides.length;
   const slide = slides[current];
@@ -64,27 +67,53 @@ export default function StoryGallery({
 
           {/* Right: yellow info card — title, date, location, paragraphs */}
           <div className="story-gallery__card-wrap">
-            <div className="story-gallery__card">
-              <h2 className="story-gallery__card-title">
-                {slide.titlePrefix && (
-                  <span className="story-gallery__card-title-prefix">{slide.titlePrefix}</span>
-                )}
-                {slide.title}
-              </h2>
-              <div className="story-gallery__card-meta">
-                {slide.date && <span className="story-gallery__card-date">{slide.date}</span>}
-                {slide.location && (
-                  <span className="story-gallery__card-location">{slide.location}</span>
-                )}
+            {slide.id ? (
+              <Link href={`/${locale}/exhibitions/${slide.id}`} className="story-gallery__card-link">
+                <div className="story-gallery__card">
+                  <h2 className="story-gallery__card-title">
+                    {slide.titlePrefix && (
+                      <span className="story-gallery__card-title-prefix">{slide.titlePrefix}</span>
+                    )}
+                    {slide.title}
+                  </h2>
+                  <div className="story-gallery__card-meta">
+                    {slide.date && <span className="story-gallery__card-date">{slide.date}</span>}
+                    {slide.location && (
+                      <span className="story-gallery__card-location">{slide.location}</span>
+                    )}
+                  </div>
+                  <div className="story-gallery__card-body">
+                    {slide.paragraphs.map((p, i) => (
+                      <p key={i} className="story-gallery__card-p">
+                        {p}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </Link>
+            ) : (
+              <div className="story-gallery__card">
+                <h2 className="story-gallery__card-title">
+                  {slide.titlePrefix && (
+                    <span className="story-gallery__card-title-prefix">{slide.titlePrefix}</span>
+                  )}
+                  {slide.title}
+                </h2>
+                <div className="story-gallery__card-meta">
+                  {slide.date && <span className="story-gallery__card-date">{slide.date}</span>}
+                  {slide.location && (
+                    <span className="story-gallery__card-location">{slide.location}</span>
+                  )}
+                </div>
+                <div className="story-gallery__card-body">
+                  {slide.paragraphs.map((p, i) => (
+                    <p key={i} className="story-gallery__card-p">
+                      {p}
+                    </p>
+                  ))}
+                </div>
               </div>
-              <div className="story-gallery__card-body">
-                {slide.paragraphs.map((p, i) => (
-                  <p key={i} className="story-gallery__card-p">
-                    {p}
-                  </p>
-                ))}
-              </div>
-            </div>
+            )}
             <nav className="story-gallery__nav" aria-label="Gallery navigation">
               <button
                 type="button"
