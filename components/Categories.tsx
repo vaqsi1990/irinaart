@@ -18,6 +18,9 @@ type Painting = {
 
 const CATEGORIES_LIMIT = 4;
 
+// Specific categories to display in order
+const DISPLAY_CATEGORIES = ["african beauty", "geisha", "venice carnival", "portrait"];
+
 const Categories = () => {
   const t = useTranslations("categories");
   const locale = useLocale();
@@ -48,15 +51,23 @@ const Categories = () => {
     ])
       .then(([cols, arts]) => {
         if (Array.isArray(cols)) {
-          setCollections(cols);
-          const firstFour = cols.slice(0, CATEGORIES_LIMIT);
-          const hasVenice = firstFour.some(
-            (c: Collection) => c.name.toLowerCase() === "venice carnaval"
-          );
-          if (!hasVenice && firstFour.length > 0) {
-            setSelectedCategory((prev) =>
-              prev === "venice carnaval" ? firstFour[0].name : prev
+          // Filter collections to only include the 4 specific categories
+          const filtered = DISPLAY_CATEGORIES.map((catName) => {
+            return cols.find((c: Collection) => 
+              c.name.toLowerCase() === catName.toLowerCase()
             );
+          }).filter(Boolean) as Collection[];
+          
+          setCollections(filtered);
+          
+          // Set initial selected category to "venice carnaval" if available, otherwise first available
+          const venice = filtered.find((c) => 
+            c.name.toLowerCase() === "venice carnaval"
+          );
+          if (venice) {
+            setSelectedCategory(venice.name);
+          } else if (filtered.length > 0) {
+            setSelectedCategory(filtered[0].name);
           }
         }
         if (Array.isArray(arts)) setPaintings(arts);
@@ -64,9 +75,22 @@ const Categories = () => {
       .catch(() => {});
   }, []);
 
-  // Only first 4 categories from API (no "all")
+  // Display only the 4 specific categories in order
   const categoryButtons = collections
-    .slice(0, CATEGORIES_LIMIT)
+    .filter((c) => 
+      DISPLAY_CATEGORIES.some((catName) => 
+        c.name.toLowerCase() === catName.toLowerCase()
+      )
+    )
+    .sort((a, b) => {
+      const indexA = DISPLAY_CATEGORIES.findIndex((cat) => 
+        cat.toLowerCase() === a.name.toLowerCase()
+      );
+      const indexB = DISPLAY_CATEGORIES.findIndex((cat) => 
+        cat.toLowerCase() === b.name.toLowerCase()
+      );
+      return indexA - indexB;
+    })
     .map((c) => ({ name: c.name, value: c.name }));
 
   const filteredArtworks = paintings

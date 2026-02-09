@@ -1,6 +1,4 @@
-@import url("https://fonts.cdnfonts.com/css/schabo");
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap");
 @import "tailwindcss";
 
 /* Ensure admin and all Tailwind classes are scanned (paths relative to this file) */
@@ -33,6 +31,7 @@
 body {
   background-color: #85182b !important;
   color: var(--foreground);
+  font-family: "Didact Gothic", var(--font-didact-gothic), sans-serif !important;
 }
 
 .layoutWrapper {
@@ -89,7 +88,7 @@ body {
   border-radius: 999px;
   background: var(--base-300);
   color: var(--base-100);
-  font-family: "DM Mono", monospace;
+  font-family: "Didact Gothic", var(--font-didact-gothic), sans-serif;
   font-size: 0.8rem;
 }
 
@@ -867,7 +866,7 @@ section {
 }
 
 .hero-home__heading {
-  font-family: "SCHABO", sans-serif;
+  font-family: "Didact Gothic", var(--font-didact-gothic), sans-serif;
   font-size: clamp(1.75rem, 3.2vw, 2.75rem);
   line-height: 1.15;
   letter-spacing: 0.02em;
@@ -1009,7 +1008,7 @@ section {
 }
 
 .siteFooter__name {
-  font-family: "SCHABO", sans-serif;
+  font-family: "Didact Gothic", var(--font-didact-gothic), sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -1557,7 +1556,7 @@ section {
 }
 
 .photo-gallery__title {
-  font-family: "SCHABO", sans-serif;
+  font-family: "Didact Gothic", var(--font-didact-gothic), sans-serif;
   font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -1566,7 +1565,7 @@ section {
 }
 
 .photo-gallery__price {
-  font-family: "DM Mono", monospace;
+  font-family: "Didact Gothic", var(--font-didact-gothic), sans-serif;
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
@@ -1827,7 +1826,7 @@ section {
 }
 
 .certificates-title {
-  font-family: "Noto Sans Georgian", "SCHABO", sans-serif;
+  font-family: "Didact Gothic", var(--font-didact-gothic), sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -2790,7 +2789,7 @@ input placeholder {
 }
 
 .about-page__title {
-  font-family: "SCHABO", sans-serif;
+  font-family: "Didact Gothic", var(--font-didact-gothic), sans-serif;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 700;
   text-transform: uppercase;
