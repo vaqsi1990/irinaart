@@ -47,6 +47,9 @@ export default function Nav() {
           <TransitionLink className="siteNav__link" href={`/${locale}/gallery`} onClick={closeMenu}>
             {t("gallery")}
           </TransitionLink>
+          <TransitionLink className="siteNav__link" href={`/${locale}/sale`} onClick={closeMenu}>
+            {t("sale")}
+          </TransitionLink>
           <TransitionLink className="siteNav__link" href={`/${locale}/about`} onClick={closeMenu}>
             {t("about")}
           </TransitionLink>

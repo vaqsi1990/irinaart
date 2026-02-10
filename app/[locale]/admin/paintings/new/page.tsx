@@ -10,6 +10,7 @@ export default function NewPaintingPage() {
   const [image, setImage] = useState("");
   const [alt, setAlt] = useState("");
   const [name, setName] = useState("");
+   const [forsale, setForsale] = useState(false);
   const [collectionId, setCollectionId] = useState<number | "">("");
   const [collections, setCollections] = useState<Collection[]>([]);
   const [loading, setLoading] = useState(false);
@@ -44,6 +45,7 @@ export default function NewPaintingPage() {
           image: image.trim(),
           alt: alt.trim(),
           name: name.trim(),
+          forsale,
           collectionId: Number(collectionId),
         }),
       });
@@ -125,6 +127,23 @@ export default function NewPaintingPage() {
               </option>
             ))}
           </select>
+        </div>
+        <div className="admin-form__group">
+          <label htmlFor="forsale" className="admin-form__label">
+            იყიდება?
+          </label>
+          <div className="admin-form__checkbox-row">
+            <input
+              id="forsale"
+              type="checkbox"
+              checked={forsale}
+              onChange={(e) => setForsale(e.target.checked)}
+              className="admin-form__checkbox"
+            />
+            <span className="admin-form__checkbox-label">
+              მონიშნე, თუ ნამუშევარი იყიდება
+            </span>
+          </div>
         </div>
         <div className="admin-form__group">
           <label className="admin-form__label">სურათი</label>

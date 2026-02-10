@@ -12,6 +12,7 @@ type PaintingWithCollection = {
   image: string;
   alt: string;
   name: string;
+  forsale?: boolean;
   collection: { name: string };
 };
 
@@ -115,6 +116,12 @@ export default function ProductDetail({ painting }: ProductDetailProps) {
               {painting.collection && (
                 <p className="product-collection">
                   <strong>კოლექცია:</strong> {painting.collection.name}
+                </p>
+              )}
+
+              {painting.forsale && (
+                <p className="product-collection">
+                  <strong>სტატუსი:</strong> იყიდება
                 </p>
               )}
 

@@ -22,6 +22,7 @@ model Painting {
   image        String
   alt          String
   name         String
+  forsale      Boolean    @default(false)
   collectionId Int
   collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
   createdAt    DateTime   @default(now())

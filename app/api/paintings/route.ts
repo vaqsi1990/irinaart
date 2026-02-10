@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
         image: data.image,
         alt: data.alt,
         name: data.name,
+        forsale: data.forsale ?? false,
         collectionId: data.collectionId,
       },
       include: { collection: { select: { id: true, name: true } } },

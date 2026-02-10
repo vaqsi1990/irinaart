@@ -7,6 +7,7 @@ export const createPaintingSchema = z.object({
   image: imageUrl,
   alt: z.string().min(1, "Alt text is required").max(500),
   name: z.string().min(1, "Name is required").max(200),
+  forsale: z.boolean().optional().default(false),
   collectionId: z.number().int().positive("Collection ID is required"),
 });
 

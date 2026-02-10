@@ -34,6 +34,7 @@ export async function PATCH(request: NextRequest, { params }: Params) {
         ...(data.image != null && { image: data.image }),
         ...(data.alt != null && { alt: data.alt }),
         ...(data.name != null && { name: data.name }),
+        ...(data.forsale != null && { forsale: data.forsale }),
         ...(data.collectionId != null && { collectionId: data.collectionId }),
       },
       include: { collection: { select: { id: true, name: true } } },
