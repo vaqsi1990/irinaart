@@ -33,6 +33,8 @@ export default async function AboutPage() {
               </p>
             ))}
           </div>
+
+          
         </div>
       </div>
     </article>

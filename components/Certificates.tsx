@@ -11,6 +11,8 @@ const CERTIFICATE_IMAGES = [
   { src: "/certificates/4.jpg", alt: "Certificate 4" },
   { src: "/certificates/5.jpg", alt: "Certificate 5" },
   { src: "/certificates/6.jpg", alt: "Certificate 6" },
+  { src: "/certificates/7.jpg", alt: "Certificate 7" },
+  { src: "/certificates/8.jpg", alt: "Certificate 8" },
 ];
 
 type CertificatesProps = {
@@ -69,7 +71,7 @@ export default function Certificates({ title, className = "" }: CertificatesProp
               {CERTIFICATE_IMAGES.map(({ src, alt }) => (
                 <div
                   key={src}
-                  className="relative aspect-[4/3] overflow-hidden rounded-lg bg-neutral-200 transition-all duration-300 hover:scale-[1.02] flex-shrink-0"
+                  className="relative aspect-[3/4] overflow-hidden rounded-lg bg-neutral-200 transition-all duration-300 hover:scale-[1.02] flex-shrink-0"
                   style={{
                     width: `${100 / itemsPerView}%`,
                   }}
