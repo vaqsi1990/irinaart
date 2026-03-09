@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import prisma from "@/lib/prisma";
@@ -96,11 +96,11 @@ export default async function Sale({ searchParams, params }: Props) {
               <div key={item.id} className="gallery-item-card">
                 <Link href={`/${locale}/products/${item.id}`} className="gallery-item-card__link">
                   <div className="gallery-item-card__img-wrap">
-                    <Image
+                    <img
                       src={item.image}
                       alt={item.alt || item.name}
-                      fill
                       sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                   
                       className="object-cover"
                     />
                   </div>

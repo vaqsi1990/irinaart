@@ -108,12 +108,11 @@ const Hero = () => {
             ref={secondaryFrameRef}
             className="hero-home__frame hero-home__frame--secondary"
           >
-            <Image
+            <img
               src={rightItem.image}
               alt={rightItem.alt}
-              width={280}
-              height={360}
               className="hero-home__frame-img"
+         
             />
           </div>
         </div>

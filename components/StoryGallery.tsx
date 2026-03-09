@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
-import Image from "next/image";
+
 import Link from "next/link";
 import { useLocale } from "next-intl";
 import type { StorySlide } from "@/data/storySlides";
@@ -52,13 +52,13 @@ export default function StoryGallery({
               {/* Front: main image with torn border */}
               <div className="story-gallery__photo-wrap">
                 <div className="story-gallery__photo story-gallery__photo--torn">
-                  <Image
+                  <img
                     src={slide.image}
                     alt={slide.alt}
-                    fill
+                 
                     sizes="(max-width: 900px) 100vw, 55vw"
                     className="story-gallery__image"
-                    priority={current === 0}
+                  
                   />
                 </div>
               </div>
