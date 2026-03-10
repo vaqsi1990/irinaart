@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useEffect } from "react";
-import Image from "next/image";
+
 import { useTranslations } from "next-intl";
 
 const CERTIFICATE_IMAGES = [
@@ -76,11 +76,11 @@ export default function Certificates({ title, className = "" }: CertificatesProp
                     width: `${100 / itemsPerView}%`,
                   }}
                 >
-                  <Image
+                  <img
                     src={src}
                     alt={alt}
-                    fill
-                    sizes={itemsPerView === 1 ? "100vw" : "33vw"}
+                    width={580}
+                    height={580}
                     className="object-cover"
                   />
                 </div>

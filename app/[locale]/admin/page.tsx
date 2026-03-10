@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+
 export default function AdminDashboard() {
   return (
     <div className="admin-page">
@@ -9,21 +9,21 @@ export default function AdminDashboard() {
           <h2 className="admin-card__label">ნახატები</h2>
           <p className="admin-card__value">—</p>
           <Link href="/admin/paintings" className="admin-card__link admin-card-button flex items-center gap-2">
-            მართვა    <Image src="/right-arrow.png" alt="arrow-left" width={20} height={20} />
+            მართვა    <img src="/right-arrow.png" alt="arrow-left" width={20} height={20} />
           </Link>
         </div>
         <div className="admin-card">
           <h2 className="admin-card__label">კატეგორიები</h2>
           <p className="admin-card__value">—</p>
           <Link href="/admin/collections" className="admin-card__link admin-card-button">
-            მართვა <Image src="/right-arrow.png" alt="arrow-left" width={20} height={20} />
+            მართვა <img src="/right-arrow.png" alt="arrow-left" width={20} height={20} />
           </Link>
         </div>
         <div className="admin-card">
           <h2 className="admin-card__label">გამოფენები</h2>
           <p className="admin-card__value">—</p>
           <Link href="/admin/exhibitions" className="admin-card__link admin-card-button">
-            მართვა <Image src="/right-arrow.png" alt="arrow-left" width={20} height={20} />
+            მართვა <img src="/right-arrow.png" alt="arrow-left" width={20} height={20} />
           </Link>
         </div>
       </div>

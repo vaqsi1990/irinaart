@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+
 
 type Exhibition = {
   id: number;
@@ -86,7 +86,7 @@ export default function AdminExhibitionsPage() {
                 <tr key={ex.id} className="admin-table__row">
                   <td className="admin-table__td admin-table__td--img">
                     <span className="admin-table__img-wrap">
-                      <Image
+                      <img
                         src={ex.image}
                         alt={ex.title}
                         width={64}

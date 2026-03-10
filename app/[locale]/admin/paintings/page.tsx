@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 type Painting = {
   id: number;
@@ -86,7 +85,7 @@ export default function AdminPaintingsPage() {
                 <tr key={p.id} className="admin-table__row">
                   <td className="admin-table__td admin-table__td--img">
                     <span className="admin-table__img-wrap">
-                      <Image
+                      <img
                         src={p.image}
                         alt={p.alt}
                         width={64}

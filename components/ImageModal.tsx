@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
+
 interface ImageModalProps {
   src: string
   alt: string
@@ -17,7 +17,7 @@ export default function ImageModal({ src, alt, className = '' }: ImageModalProps
   return (
     <>
       {/* Clickable Image */}
-      <Image
+      <img
         width={580}
         height={580}
         src={src}
@@ -42,7 +42,7 @@ export default function ImageModal({ src, alt, className = '' }: ImageModalProps
             </div>
 
             {/* Image */}
-            <Image
+            <img
               width={580}
               height={580}
               src={src}
