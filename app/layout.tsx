@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Irina Dzamashvili - Artist",
+  title: "irinadzart.ge",
   description: "Irina Dzamashvili - Artist Portfolio",
+  icons: {
+    icon: "/logo.jpg",
+  },
 };
+
+
 
 export default function RootLayout({
   children,
