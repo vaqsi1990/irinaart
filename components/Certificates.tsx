@@ -79,9 +79,7 @@ export default function Certificates({ title, className = "" }: CertificatesProp
                   <img
                     src={src}
                     alt={alt}
-                    width={580}
-                    height={580}
-                    className="object-cover"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               ))}
