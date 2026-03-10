@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+
 import { getTranslations } from "next-intl/server";
 
 export default async function AboutPage() {
@@ -16,13 +16,13 @@ export default async function AboutPage() {
 
         <div className="about-page__content">
           <div className="about-page__image-wrap">
-            <Image
+            <img 
               src="/me.jpg"
               alt={t("title")}
               width={480}
               height={640}
               className="about-page__image"
-              priority
+          
             />
           </div>
 
