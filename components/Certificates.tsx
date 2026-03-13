@@ -28,7 +28,7 @@ const CERTIFICATE_IMAGES = [
   { src: "/certificates/21.jpeg", alt: "Certificate 21" },
   { src: "/certificates/22.jpeg", alt: "Certificate 22" },
   { src: "/certificates/23.jpeg", alt: "Certificate 23" },
- 
+  { src: "/certificates/24.jpeg", alt: "Certificate 24" },
 ];
 
 type CertificatesProps = {
@@ -61,15 +61,22 @@ export default function Certificates({ title, className = "" }: CertificatesProp
   }, []);
 
   const totalItems = CERTIFICATE_IMAGES.length;
-  const maxIndex = Math.max(0, totalItems - itemsPerView);
+
+  useEffect(() => {
+    const pages = Math.max(1, Math.ceil(totalItems / itemsPerView));
+    setCurrentIndex((i) => Math.min(i, pages - 1));
+  }, [itemsPerView, totalItems]);
+  /** Page-based index so translateX(-100% * page) matches viewport; gap no longer breaks last slide */
+  const pageCount = Math.max(1, Math.ceil(totalItems / itemsPerView));
+  const maxPageIndex = pageCount - 1;
 
   const goNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  }, [maxIndex]);
+    setCurrentIndex((prev) => (prev >= maxPageIndex ? 0 : prev + 1));
+  }, [maxPageIndex]);
 
   const goPrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
-  }, [maxIndex]);
+    setCurrentIndex((prev) => (prev <= 0 ? maxPageIndex : prev - 1));
+  }, [maxPageIndex]);
 
   return (
     <>
@@ -77,34 +84,45 @@ export default function Certificates({ title, className = "" }: CertificatesProp
       <div className="mt-14 certificates-section flex justify-center px-4" style={{ marginBottom: "2rem" }}>
         <div className="relative w-full max-w-6xl">
           {/* Carousel Container */}
-          <div className="overflow-hidden">
+          <div className="overflow-hidden w-full">
             <div
-              className="flex transition-transform duration-500 ease-in-out gap-4"
+              className="flex transition-transform duration-500 ease-in-out"
               style={{
-                transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
+                transform: `translateX(-${currentIndex * 100}%)`,
               }}
             >
-              {CERTIFICATE_IMAGES.map(({ src, alt }) => (
+              {Array.from({ length: pageCount }, (_, page) => (
                 <div
-                  key={src}
-                  className="relative aspect-[3/4] overflow-hidden rounded-lg flex items-center justify-center flex-shrink-0 cursor-pointer"
-                  style={{
-                    width: `${100 / itemsPerView}%`,
-                  }}
-                  onClick={() => setSelected({ src, alt })}
+                  key={page}
+                  className="flex w-full flex-shrink-0 gap-4 min-w-0"
+                  style={{ boxSizing: "border-box" }}
                 >
-                  <img
-                    src={src}
-                    alt={alt}
-                    className="w-full h-full object-contain"
-                  />
+                  {CERTIFICATE_IMAGES.slice(
+                    page * itemsPerView,
+                    page * itemsPerView + itemsPerView
+                  ).map(({ src, alt }) => (
+                    <div
+                      key={src}
+                      className="relative aspect-[3/4] overflow-hidden rounded-lg flex items-center justify-center flex-shrink-0 cursor-pointer min-w-0"
+                      style={{
+                        width: `calc((100% - ${(itemsPerView - 1) * 1}rem) / ${itemsPerView})`,
+                      }}
+                      onClick={() => setSelected({ src, alt })}
+                    >
+                      <img
+                        src={src}
+                        alt={alt}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
           </div>
 
           {/* Navigation Arrows */}
-          {totalItems > itemsPerView && (
+          {pageCount > 1 && (
             <>
               {/* Desktop: Buttons below items when itemsPerView is 3 (large screens) */}
               {itemsPerView === 3 && (
