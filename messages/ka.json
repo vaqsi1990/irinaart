@@ -49,6 +49,13 @@
     "menu": "მენიუ",
     "closeMenu": "მენიუს დახურვა",
     "openMenu": "მენიუს გახსნა"
+  },
+  "footer": {
+    "contactAria": "კონტაქტი",
+    "phoneLabel": "ტელ:",
+    "emailLabel": "ფოსტა:",
+    "facebookAria": "Irina Art Facebook-ზე",
+    "whatsappAria": "წერა WhatsApp-ში"
   }
 }
 

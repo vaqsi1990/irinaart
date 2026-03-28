@@ -49,6 +49,13 @@
     "menu": "Menu",
     "closeMenu": "Close menu",
     "openMenu": "Open menu"
+  },
+  "footer": {
+    "contactAria": "Contact",
+    "phoneLabel": "Tel:",
+    "emailLabel": "Email:",
+    "facebookAria": "Irina Art on Facebook",
+    "whatsappAria": "Message on WhatsApp"
   }
 }
 

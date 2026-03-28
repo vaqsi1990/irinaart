@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { FaWhatsapp, FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
+import { FaWhatsapp, FaFacebook } from "react-icons/fa";
 
-const phoneNumber = "+9955599273228";
+const contactPhoneDisplay = "+995790831";
+const contactEmail = "irinedzamashvili@gmail.com";
 
 
 type FooterProps = {
@@ -15,10 +16,11 @@ type FooterProps = {
 };
 
 export default function Footer({
-  facebookUrl = "https://www.facebook.com/",
-  whatsappNumber = "99599273228 ",
+  facebookUrl = "https://www.facebook.com/profile.php?id=100063680016876",
+  whatsappNumber = "9955599273228",
 }: FooterProps) {
   const t = useTranslations("nav");
+  const tf = useTranslations("footer");
   const locale = useLocale();
 
   return (
@@ -38,19 +40,44 @@ export default function Footer({
             {t("about")}
           </Link>
         </nav>
-        <div className="siteFooter__contacts" aria-label="კონტაქტი">
-        <Link  target="_blank" href="https://www.facebook.com/profile.php?id=100063680016876" className="w-12 h-12 md:w-14 md:h-14 bg-[#1877F2] hover:bg-[#166FE5] rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110" aria-label="Facebook">
-            <FaFacebook className="w-6 h-6 md:w-7 md:h-7 text-white" />
-          </Link>
-          <Link
-            href={`https://wa.me/${phoneNumber}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open WhatsApp"
-            className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#25D366] shadow-lg hover:scale-105 transition-transform duration-200"
-          >
-            <FaWhatsapp className="text-white text-[35px]  md:text-[40px]" />
-          </Link>
+        <div
+          className="siteFooter__contactsWrap"
+          role="group"
+          aria-label={tf("contactAria")}
+        >
+          <div className="siteFooter__contactDetails flex flex-col items-center justify-center">
+            <a
+              href={`tel:${contactPhoneDisplay.replace(/\s/g, "")}`}
+              className="siteFooter__contactLine"
+            >
+              {tf("phoneLabel")}{" "}
+              <span className="siteFooter__contactValue">{contactPhoneDisplay}</span>
+            </a>
+            <a href={`mailto:${contactEmail}`} className="siteFooter__contactLine">
+              {tf("emailLabel")}{" "}
+              <span className="siteFooter__contactValue">{contactEmail}</span>
+            </a>
+          </div>
+          <div className="siteFooter__contacts">
+            <Link
+              href={facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="siteFooter__icon siteFooter__icon--facebook"
+              aria-label={tf("facebookAria")}
+            >
+              <FaFacebook aria-hidden />
+            </Link>
+            <Link
+              href={`https://wa.me/${String(whatsappNumber).replace(/\D/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="siteFooter__icon siteFooter__icon--whatsapp"
+              aria-label={tf("whatsappAria")}
+            >
+              <FaWhatsapp aria-hidden />
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
