@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { FaWhatsapp, FaFacebook } from "react-icons/fa";
 
-const contactPhoneDisplay = "+995790831";
+const contactPhoneDisplay = "+995599790831";
 const contactEmail = "irinedzamashvili@gmail.com";
 
 
